@@ -1,4 +1,4 @@
-# dungeon-game
+# Dungeon Game
 
 In this game, I plan to use the following 3 design patterns:
 
