@@ -14,6 +14,8 @@ public class Main {
      * @param args - no arguments
      */
     public static void main(String[] args) {
+        System.out.println("Welcome to Dungeon Warrior!");
+        
         Random random = new Random();
         int characterSelection = random.nextInt(5) + 1;
         ConcreteCharacter char1 = null;
