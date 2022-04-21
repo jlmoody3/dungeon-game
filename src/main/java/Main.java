@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         Random random = new Random();
         int characterSelection = random.nextInt(5) + 1;
-        ConcreteCharacter char1;
+        ConcreteCharacter char1 = null;
         
         switch(characterSelection) {
         case 1:
@@ -36,7 +36,27 @@ public class Main {
             break;
         }
         
-
+        Weapon newWeapon;
+        
+        switch(characterSelection) {
+        case 1:
+            newWeapon = new Club(char1);
+            break;
+        case 2:
+            newWeapon = new Bow(char1);
+            break;
+        case 3:
+            newWeapon = new Sword(char1);
+            break;
+        case 4:
+            newWeapon = new Power(char1);
+            break;
+        case 5:
+            newWeapon = new Wand(char1);
+            break;
+        }
+        
+        
     }
 
 }

@@ -3,9 +3,10 @@ package main.java;
 public class Power extends Weapon {
     static final int STARTING_DAMAGE = 10;
     
-    public Power() {
-        super();
+    public Power(Character character) {
+        super(character);
         this.setDamage(STARTING_DAMAGE);
+        System.out.println("You have power.");
     }
 
     @Override

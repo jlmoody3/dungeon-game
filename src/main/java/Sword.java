@@ -3,9 +3,10 @@ package main.java;
 public class Sword extends Weapon {
     static final int STARTING_DAMAGE = 10;
     
-    public Sword() {
-        super();
+    public Sword(Character character) {
+        super(character);
         this.setDamage(STARTING_DAMAGE);
+        System.out.println("You have a sword.");
     }
 
     @Override

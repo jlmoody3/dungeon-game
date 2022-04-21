@@ -3,9 +3,10 @@ package main.java;
 public class Wand extends Weapon {
     static final int STARTING_DAMAGE = 5;
     
-    public Wand() {
-        super();
+    public Wand(Character character) {
+        super(character);
         this.setDamage(STARTING_DAMAGE);
+        System.out.println("You have a wand.");
     }
 
     @Override
