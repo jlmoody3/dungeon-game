@@ -5,6 +5,7 @@ import java.util.Random;
 import main.java.character.CharacterFactory;
 import main.java.character.CharacterType;
 import main.java.character.ConcreteCharacter;
+import main.java.dungeon.Dungeon;
 
 /**
  * Main class for Dungeon Warrior
@@ -61,6 +62,19 @@ public class Main {
             newWeapon = new Wand(char1);
             break;
         }
+        
+        Dungeon dungeon = new Dungeon();
+        int floor = 0;
+        
+        while(floor <= dungeon.getNumFloors()) {
+            floor = dungeon.getFloor();
+            System.out.println("You are on floor " + floor +".");
+            System.out.println("You have entered the " + dungeon.getRealm().toString() + ".");
+            dungeon.getRealm().changeRealm(dungeon);
+            floor++;
+            dungeon.setFloor(floor);
+        }
+        
         
         
     }
