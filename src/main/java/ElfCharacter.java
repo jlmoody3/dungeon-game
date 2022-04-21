@@ -18,14 +18,14 @@ public class ElfCharacter extends ConcreteCharacter {
     }
 
     @Override
-    public int strike() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
     public void getWeapon() {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public int strike(int level) {
+        // TODO Auto-generated method stub
+        return 0;
     }
 }

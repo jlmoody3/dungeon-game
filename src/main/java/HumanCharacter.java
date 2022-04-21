@@ -18,7 +18,7 @@ public class HumanCharacter extends ConcreteCharacter {
     }
 
     @Override
-    public int strike() {
+    public int strike(int level) {
         // TODO Auto-generated method stub
         return 0;
     }
