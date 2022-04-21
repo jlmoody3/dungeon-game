@@ -1,6 +1,6 @@
 package main.java;
 
-public class OrcCharacter extends Character{
+public class OrcCharacter extends ConcreteCharacter{
     public OrcCharacter() {
         super(CharacterType.ORC);
         this.setStrength(13);
@@ -8,11 +8,24 @@ public class OrcCharacter extends Character{
         this.setSpeed(15);
         this.setAccuracy(11);
         this.setLuck(0.07);
+        this.setLevel(1);
         
         construct();
     }
     
-    protected void construct() {
+    public void construct() {
         System.out.println("Congratulations! You are an orc.");
+    }
+
+    @Override
+    public int strike() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void getWeapon() {
+        // TODO Auto-generated method stub
+        
     }
 }

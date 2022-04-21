@@ -1,8 +1,8 @@
 package main.java;
 
 public class CharacterFactory {
-    public static Character buildCharacter(CharacterType character) {
-        Character char1 = null;
+    public static ConcreteCharacter buildCharacter(CharacterType character) {
+        ConcreteCharacter char1 = null;
                 
         switch (character) {
         case ELF:

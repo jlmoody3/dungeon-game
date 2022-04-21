@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         Random random = new Random();
         int characterSelection = random.nextInt(5) + 1;
-        Character char1;
+        ConcreteCharacter char1;
         
         switch(characterSelection) {
         case 1:
