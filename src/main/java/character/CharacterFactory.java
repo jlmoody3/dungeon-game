@@ -1,4 +1,4 @@
-package main.java;
+package main.java.character;
 
 public class CharacterFactory {
     public static ConcreteCharacter buildCharacter(CharacterType character) {

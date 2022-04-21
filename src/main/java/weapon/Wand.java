@@ -1,4 +1,6 @@
-package main.java;
+package main.java.weapon;
+
+import main.java.character.Character;
 
 public class Wand extends Weapon {
     static final int STARTING_DAMAGE = 5;

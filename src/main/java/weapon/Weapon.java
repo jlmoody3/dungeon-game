@@ -1,4 +1,6 @@
-package main.java;
+package main.java.weapon;
+
+import main.java.character.Character;
 
 public abstract class Weapon implements Character{
     private Character character;

@@ -1,12 +1,14 @@
-package main.java;
+package main.java.weapon;
 
-public class Power extends Weapon {
-    static final int STARTING_DAMAGE = 10;
+import main.java.character.Character;
+
+public class Bow extends Weapon {
+    static final int STARTING_DAMAGE = 7;
     
-    public Power(Character character) {
+    public Bow(Character character) {
         super(character);
         this.setDamage(STARTING_DAMAGE);
-        System.out.println("You have power.");
+        System.out.println("You have a bow.");
     }
 
     @Override

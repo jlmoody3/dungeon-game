@@ -1,12 +1,14 @@
-package main.java;
+package main.java.weapon;
 
-public class Club extends Weapon {
-    static final int STARTING_DAMAGE = 15;
+import main.java.character.Character;
+
+public class Power extends Weapon {
+    static final int STARTING_DAMAGE = 10;
     
-    public Club(Character character) {
+    public Power(Character character) {
         super(character);
         this.setDamage(STARTING_DAMAGE);
-        System.out.println("You have a club.");
+        System.out.println("You have power.");
     }
 
     @Override

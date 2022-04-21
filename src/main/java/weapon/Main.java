@@ -1,6 +1,10 @@
-package main.java;
+package main.java.weapon;
 
 import java.util.Random;
+
+import main.java.character.CharacterFactory;
+import main.java.character.CharacterType;
+import main.java.character.ConcreteCharacter;
 
 /**
  * Main class for Dungeon Warrior
