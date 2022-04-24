@@ -4,4 +4,5 @@ public interface State {
 
     void changeRealm(Dungeon dungeon);
     int calculateDamage(int floor);
+    void chooseEnemy();
 }

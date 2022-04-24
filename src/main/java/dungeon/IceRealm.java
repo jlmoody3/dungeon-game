@@ -1,5 +1,7 @@
 package main.java.dungeon;
 
+import java.util.Random;
+
 public class IceRealm implements State{
 
     Dungeon dungeon;
@@ -23,6 +25,12 @@ public class IceRealm implements State{
     @Override
     public String toString() {
         return "Ice Realm";
+    }
+
+    @Override
+    public void chooseEnemy() {
+        // TODO Auto-generated method stub
+        
     }
 }
 

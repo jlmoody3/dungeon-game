@@ -1,5 +1,7 @@
 package main.java.dungeon;
 
+import java.util.Random;
+
 public class GoldRealm implements State{
 
     Dungeon dungeon;
@@ -23,5 +25,11 @@ public class GoldRealm implements State{
     @Override
     public String toString() {
         return "Gold Realm";
+    }
+
+    @Override
+    public void chooseEnemy() {
+        // TODO Auto-generated method stub
+        
     }
 }

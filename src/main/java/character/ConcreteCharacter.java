@@ -10,6 +10,7 @@ public abstract class ConcreteCharacter implements Character {
     private int accuracy;
     private double luck;
     private int level;
+    private int healthPoints;
     
     private CharacterType character = null;
     
@@ -69,5 +70,13 @@ public abstract class ConcreteCharacter implements Character {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+    
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
     }
 }

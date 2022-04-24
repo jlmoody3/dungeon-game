@@ -43,7 +43,7 @@ public class Main {
             break;
         }
         
-        Weapon newWeapon;
+        Weapon newWeapon = null;
         
         switch(characterSelection) {
         case 1:
@@ -70,6 +70,10 @@ public class Main {
             floor = dungeon.getFloor();
             System.out.println("You are on floor " + floor +".");
             System.out.println("You have entered the " + dungeon.getRealm().toString() + ".");
+            dungeon.getRealm().chooseEnemy();
+            int damage = dungeon.getRealm().calculateDamage(floor);
+            System.out.println("It dealt " + damage + " damaage.");
+            
             dungeon.getRealm().changeRealm(dungeon);
             floor++;
             dungeon.setFloor(floor);

@@ -3,12 +3,13 @@ package main.java.character;
 public class FaerieCharacter extends ConcreteCharacter {
     public FaerieCharacter() {
         super(CharacterType.FAERIE);
-            this.setStrength(13);
-            this.setDefense(10);
-            this.setSpeed(15);
-            this.setAccuracy(11);
-            this.setLuck(0.07);
-            this.setLevel(1);
+        this.setStrength(13);
+        this.setDefense(10);
+        this.setSpeed(15);
+        this.setAccuracy(11);
+        this.setLuck(0.07);
+        this.setLevel(1);
+        this.setHealthPoints(100);
         
         construct();
     }

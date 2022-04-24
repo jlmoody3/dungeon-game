@@ -9,6 +9,7 @@ public class HumanCharacter extends ConcreteCharacter {
         this.setAccuracy(11);
         this.setLuck(0.07);
         this.setLevel(1);
+        this.setHealthPoints(100);
         
         construct();
     }
