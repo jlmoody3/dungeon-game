@@ -2,7 +2,8 @@ package main.java.dungeon;
 
 public class Dungeon {
 
-    final int NUMFLOORS = 6;
+    final int NUMFLOORS = 12;
+    final int NUMREALMS = 6;
     private State currentRealm;
     private State mudRealm;
     private State candyRealm;
@@ -94,5 +95,9 @@ public class Dungeon {
     
     public int getNumFloors() {
         return NUMFLOORS;
+    }
+    
+    public int getNumRealms() {
+        return NUMREALMS;
     }
 }

@@ -69,52 +69,57 @@ public class Main {
         
         while(floor <= dungeon.getNumFloors()) {
             floor = dungeon.getFloor();
-            System.out.println("You are on floor " + floor +".");
             System.out.println("You have entered the " + dungeon.getRealm().toString() + ".");
-            System.out.println("You have " + char1.getHealthPoints() + " HP.");
-            System.out.println("You have " + char1.getExpPoints() + " XP.");
-            // set enemy health points
-            int totalEnemyHP = dungeon.getRealm().calculateTotalHP(floor);
-            dungeon.getRealm().chooseEnemy();
-            dungeon.getRealm().setEnemyHP(totalEnemyHP);
-            System.out.println("It has " + totalEnemyHP + " HP.");
             
-            // battle sequence
-            while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) {
-                System.out.println("It strikes!");
-                int damage = dungeon.getRealm().calculateDamage(floor);
-                char1.takeDamage(damage);
-                System.out.println("It dealt " + damage + " damage.");          
-                System.out.println("You have " + char1.getHealthPoints() + " HP left.");
+            for (int i = 0; i < dungeon.getNumFloors()/dungeon.getNumRealms(); i++) {
+                System.out.println("You are on floor " + floor +".");
+                System.out.println("You have " + char1.getHealthPoints() + " HP.");
+                System.out.println("You have " + char1.getExpPoints() + " XP.");
+                // set enemy health points
+                int totalEnemyHP = dungeon.getRealm().calculateTotalHP(floor);
+                dungeon.getRealm().chooseEnemy();
+                dungeon.getRealm().setEnemyHP(totalEnemyHP);
+                System.out.println("It has " + totalEnemyHP + " HP.");
+                
+                // battle sequence
+                while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) {
+                    System.out.println("It strikes!");
+                    int damage = dungeon.getRealm().calculateDamage(floor);
+                    char1.takeDamage(damage);
+                    System.out.println("It dealt " + damage + " damage.");          
+                    System.out.println("You have " + char1.getHealthPoints() + " HP left.");
+                    if (char1.getHealthPoints() > 0) {
+                        int damageToEnemy = char1.strike(char1.getLevel());
+                        System.out.println("You strike!");
+                        dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
+                        System.out.println("You dealt " + damageToEnemy + " damage.");          
+                        System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                    }
+                }
+                if(dungeon.getRealm().getEnemyHP() <= 0) {
+                    int level1, level2;
+                    level1 = char1.getLevel();
+                    char1.setExpPoints(char1.getExpPoints() + totalEnemyHP);
+                    level2 = char1.getLevel();
+                    if (level2 > level1) {
+                        char1.levelUp();
+                        System.out.println("You leveled up!");
+                        System.out.println("You are now at level " + level2 + ".");
+                        System.out.println("You have " + char1.getHealthPoints() + " HP!");
+                    }
+                }
+                
                 if (char1.getHealthPoints() > 0) {
-                    int damageToEnemy = char1.strike(char1.getLevel());
-                    System.out.println("You strike!");
-                    dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
-                    System.out.println("You dealt " + damageToEnemy + " damage.");          
-                    System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                    floor++;
+                    dungeon.setFloor(floor);
+                }
+                else {
+                    System.out.println("You lose.");
+                    floor = dungeon.getNumFloors() + 1;
                 }
             }
-            if(dungeon.getRealm().getEnemyHP() <= 0) {
-                int level1, level2;
-                level1 = char1.getLevel();
-                char1.setExpPoints(char1.getExpPoints() + totalEnemyHP);
-                level2 = char1.getLevel();
-                if (level2 > level1) {
-                    char1.levelUp();
-                    System.out.println("You leveled up!");
-                    System.out.println("You are now at level " + level2 + ".");
-                    System.out.println("You have " + char1.getHealthPoints() + " HP!");
-                }
-            }
-            
             if (char1.getHealthPoints() > 0) {
                 dungeon.getRealm().changeRealm(dungeon);
-                floor++;
-                dungeon.setFloor(floor);
-            }
-            else {
-                System.out.println("You lose.");
-                floor = dungeon.getNumFloors() + 1;
             }
         } 
     }
