@@ -21,10 +21,10 @@ public class MudRealm implements State{
     public int calculateDamage(int floor) {
         Random random = new Random();
         if (floor % 10 == 0) {
-            return random.nextInt(floor) + 10;
+            return random.nextInt(10) + floor;
         }
-        else  {
-            return random.nextInt(floor) + 5;
+        else {
+            return random.nextInt(5) + floor;
         }
     }
 

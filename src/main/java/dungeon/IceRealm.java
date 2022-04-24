@@ -21,13 +21,13 @@ public class IceRealm implements State{
     public int calculateDamage(int floor) {
         Random random = new Random();
         if (floor % 10 == 0) {
-            return random.nextInt(floor) + 20;
+            return random.nextInt(20) + (int)(floor * 1.5);
         }
         else if (floor % 5 == 0) {
-            return random.nextInt(floor) + 15;
+            return random.nextInt(15) + (int)(floor * 1.5);
         }
         else {
-            return random.nextInt(floor) + 10;
+            return random.nextInt(10) + (int)(floor * 1.5);
         }
     }
 
