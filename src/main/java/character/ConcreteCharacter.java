@@ -11,11 +11,16 @@ public abstract class ConcreteCharacter implements Character {
     private double luck;
     private int level;
     private int healthPoints;
+    private int expPoints;
+    private int totalHP;
     
     private CharacterType character = null;
     
     public ConcreteCharacter(CharacterType character) {
         this.character = character;
+        level = 1;
+        expPoints = 0;
+        totalHP = 100;
     }
     
     public abstract void construct();
@@ -26,6 +31,11 @@ public abstract class ConcreteCharacter implements Character {
     
     public abstract void takeDamage(int damage);
 
+    public void levelUp() {
+        setTotalHP((int)(getTotalHP() * 1.20));
+        setHealthPoints(getTotalHP());
+    }
+    
     public int getStrength() {
         return strength;
     }
@@ -70,8 +80,29 @@ public abstract class ConcreteCharacter implements Character {
         return level;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setLevel() {
+        int exp = getExpPoints();
+        if (exp >= 1050) {
+            level = 7;
+        }
+        else if (exp >= 750) {
+            level = 6;
+        }
+        else if (exp >= 500) {
+            level = 5; 
+        }
+        else if (exp >= 300) {
+            level = 4;
+        }
+        else if (exp >= 150) {
+            level = 3;
+        }
+        else if (exp >= 50) {
+            level = 2;
+        }
+        else {
+            level = 1;
+        }
     }
     
     public int getHealthPoints() {
@@ -79,6 +110,28 @@ public abstract class ConcreteCharacter implements Character {
     }
 
     public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
+        if (healthPoints <= 0) {
+            this.healthPoints = 0;
+        }
+        else {
+            this.healthPoints = healthPoints;
+        }
+    }
+    
+    public int getExpPoints() {
+        return expPoints;
+    }
+    
+    public void setExpPoints(int expPoints) {
+        this.expPoints = expPoints;
+        setLevel();
+    }
+    
+    public int getTotalHP() {
+        return totalHP;
+    }
+    
+    public void setTotalHP(int totalHP) {
+        this.totalHP = totalHP;
     }
 }

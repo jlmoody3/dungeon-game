@@ -8,7 +8,6 @@ public class ElfCharacter extends ConcreteCharacter {
         this.setSpeed(15);
         this.setAccuracy(11);
         this.setLuck(0.07);
-        this.setLevel(1);
         this.setHealthPoints(100);
     
         construct();
