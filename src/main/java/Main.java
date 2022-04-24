@@ -23,7 +23,8 @@ public class Main {
         System.out.println("Welcome to Dungeon Warrior!");
         
         Random random = new Random();
-        int characterSelection = random.nextInt(5) + 1;
+        //int characterSelection = random.nextInt(5) + 1;
+        int characterSelection = 5;
         ConcreteCharacter char1 = null;
         
         switch(characterSelection) {
@@ -71,7 +72,7 @@ public class Main {
             floor = dungeon.getFloor();
             System.out.println("You have entered the " + dungeon.getRealm().toString() + ".");
             
-            for (int i = 0; i < dungeon.getNumFloors()/dungeon.getNumRealms(); i++) {
+            for (int i = 0; i < dungeon.getNumFloors()/dungeon.getNumRealms() && floor <= dungeon.getNumFloors(); i++) {
                 System.out.println("You are on floor " + floor +".");
                 System.out.println("You have " + char1.getHealthPoints() + " HP.");
                 System.out.println("You have " + char1.getExpPoints() + " XP.");
