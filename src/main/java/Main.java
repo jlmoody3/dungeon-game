@@ -1,4 +1,4 @@
-package main.java.weapon;
+package main.java;
 
 import java.util.Random;
 
@@ -6,6 +6,7 @@ import main.java.character.CharacterFactory;
 import main.java.character.CharacterType;
 import main.java.character.ConcreteCharacter;
 import main.java.dungeon.Dungeon;
+import main.java.weapon.*;
 
 /**
  * Main class for Dungeon Warrior
@@ -70,13 +71,30 @@ public class Main {
             floor = dungeon.getFloor();
             System.out.println("You are on floor " + floor +".");
             System.out.println("You have entered the " + dungeon.getRealm().toString() + ".");
+            System.out.println("You have " + char1.getHealthPoints() + " HP.");
+            // set enemy health points
+            int enemyHP = dungeon.getRealm().calculateTotalHP(floor);
             dungeon.getRealm().chooseEnemy();
-            int damage = dungeon.getRealm().calculateDamage(floor);
-            System.out.println("It dealt " + damage + " damaage.");
+            dungeon.getRealm().setEnemyHP(enemyHP);
+            System.out.println("It has " + enemyHP + " HP.");
+            
+            // battle sequence
+            while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) {
+                System.out.println("It strikes!");
+                int damage = dungeon.getRealm().calculateDamage(floor);
+                char1.takeDamage(damage);
+                System.out.println("It dealt " + damage + " damaage.");          
+                System.out.println("You have " + char1.getHealthPoints() + " HP left.");
+                int damageToEnemy = char1.strike(char1.getLevel());
+                System.out.println("You strike!");
+                dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
+                System.out.println("You dealt " + damageToEnemy + " damaage.");          
+                System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+            }
             
             dungeon.getRealm().changeRealm(dungeon);
             floor++;
-            dungeon.setFloor(floor);
+            dungeon.setFloor(floor);    
         }
         
         

@@ -5,9 +5,11 @@ import java.util.Random;
 public class MudRealm implements State{
 
     Dungeon dungeon;
+    int enemyHP;
     
     public MudRealm(Dungeon dungeon) {
         this.dungeon = dungeon;
+        //enemyHP = calculateTotalHP(1);
     }
     
     @Override
@@ -40,15 +42,30 @@ public class MudRealm implements State{
         
         switch(enemy) {
         case 1:
-            System.out.println("A mud blob attacked!");
+            System.out.println("A mud blob appeared!");
+            break;
         case 2:
-            System.out.println("A cave spider attacked!");
+            System.out.println("A cave spider appeared!");
+            break;
         case 3:
-            System.out.println("A sewer rat attacked!");
-          
+            System.out.println("A sewer rat appeared!");
+            break;
+        }        
+    }
+    
+    public int calculateTotalHP(int floor) {
+        int totalHP = floor * 2 + 10;
+        return totalHP;
+    }
+    
+    public void setEnemyHP(int hp) {
+        enemyHP = hp;
+    }
+    
+    public int getEnemyHP() {
+        if(enemyHP <= 0) {
+            return 0;
         }
-            
-        
-        
+        return enemyHP;
     }
 }

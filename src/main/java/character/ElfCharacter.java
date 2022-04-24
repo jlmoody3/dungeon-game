@@ -27,6 +27,13 @@ public class ElfCharacter extends ConcreteCharacter {
     @Override
     public int strike(int level) {
         // TODO Auto-generated method stub
-        return 0;
+        return (int)(level * 7.5);
+    }
+
+    @Override
+    public void takeDamage(int damage) {
+        int hp = getHealthPoints();
+        hp = hp - damage;
+        setHealthPoints(hp); 
     }
 }

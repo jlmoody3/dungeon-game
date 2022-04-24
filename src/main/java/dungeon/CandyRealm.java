@@ -5,6 +5,7 @@ import java.util.Random;
 public class CandyRealm implements State{
 
     Dungeon dungeon;
+    int enemyHP;
     
     public CandyRealm(Dungeon dungeon) {
         this.dungeon = dungeon;
@@ -18,8 +19,14 @@ public class CandyRealm implements State{
 
     @Override
     public int calculateDamage(int floor) {
-        // TODO Auto-generated method stub
-        return 0;
+        Random random = new Random();
+        if (floor % 10 == 0) {
+            return random.nextInt(floor) + 10;
+        }
+        else if (floor % 5 == 0) {
+            return random.nextInt(floor) + 5;
+        }
+        return floor;
     }
 
     @Override
@@ -29,7 +36,34 @@ public class CandyRealm implements State{
 
     @Override
     public void chooseEnemy() {
-        // TODO Auto-generated method stub
+        Random random = new Random();
+        int enemy = 0;
+        enemy = random.nextInt(3) + 1;
         
+        switch(enemy) {
+        case 1:
+            System.out.println("A candy blob appeared!");
+            break;
+        case 2:
+            System.out.println("A candy goblin appeared!");
+            break;
+        case 3:
+            System.out.println("A candy robot appeared!");
+            break;
+        }
+        
+    }
+    
+    public int calculateTotalHP(int floor) {
+        int totalHP = floor * 2 + 10;
+        return totalHP;
+    }
+    
+    public void setEnemyHP(int hp) {
+        enemyHP = hp;
+    }
+    
+    public int getEnemyHP() {
+        return enemyHP;
     }
 }

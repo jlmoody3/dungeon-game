@@ -23,6 +23,8 @@ public abstract class ConcreteCharacter implements Character {
     public abstract int strike(int level);
     
     public abstract void getWeapon();
+    
+    public abstract void takeDamage(int damage);
 
     public int getStrength() {
         return strength;

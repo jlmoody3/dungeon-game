@@ -20,13 +20,19 @@ public class HumanCharacter extends ConcreteCharacter {
 
     @Override
     public int strike(int level) {
-        // TODO Auto-generated method stub
-        return 0;
+        return level * 10;
     }
 
     @Override
     public void getWeapon() {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public void takeDamage(int damage) {
+        int hp = getHealthPoints();
+        hp = hp - damage;
+        setHealthPoints(hp); 
     }
 }
