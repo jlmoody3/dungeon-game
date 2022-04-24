@@ -23,8 +23,8 @@ public class Main {
         System.out.println("Welcome to Dungeon Warrior!");
         
         Random random = new Random();
-        //int characterSelection = random.nextInt(5) + 1;
-        int characterSelection = 5;
+        int characterSelection = random.nextInt(5) + 1;
+        //int characterSelection = 5;
         ConcreteCharacter char1 = null;
         
         switch(characterSelection) {
@@ -65,6 +65,8 @@ public class Main {
             break;
         }
         
+        char1.printStats();
+        
         Dungeon dungeon = new Dungeon();
         int floor = 0;
         
@@ -86,8 +88,9 @@ public class Main {
                 while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) {
                     System.out.println("It strikes!");
                     int damage = dungeon.getRealm().calculateDamage(floor);
-                    char1.takeDamage(damage);
-                    System.out.println("It dealt " + damage + " damage.");          
+                    System.out.println("It dealt " + damage + " damage.");
+                    damage = char1.takeDamage(damage);
+                    System.out.println("You took " + damage + " damage.");          
                     System.out.println("You have " + char1.getHealthPoints() + " HP left.");
                     if (char1.getHealthPoints() > 0) {
                         int damageToEnemy = char1.strike(char1.getLevel());

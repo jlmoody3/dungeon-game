@@ -3,11 +3,12 @@ package main.java.character;
 public class ElfCharacter extends ConcreteCharacter {
     public ElfCharacter() {
         super(CharacterType.ELF);
-        this.setStrength(13);
+        this.setInitialStrength(7.5);
+        this.setStrength(getInitialStrength());
         this.setDefense(10);
-        this.setSpeed(15);
-        this.setAccuracy(11);
-        this.setLuck(0.07);
+        this.setSpeed(40);
+        this.setAccuracy(30);
+        this.setLuck(7);
         this.setHealthPoints(100);
     
         construct();
@@ -26,13 +27,8 @@ public class ElfCharacter extends ConcreteCharacter {
     @Override
     public int strike(int level) {
         // TODO Auto-generated method stub
-        return (int)(level * 7.5);
+        return (int)(level * getStrength());
     }
 
-    @Override
-    public void takeDamage(int damage) {
-        int hp = getHealthPoints();
-        hp = hp - damage;
-        setHealthPoints(hp); 
-    }
+
 }

@@ -4,15 +4,16 @@ import java.util.Random;
 
 public abstract class ConcreteCharacter implements Character {
     protected String name;
-    private int strength;
+    private double strength;
     private int defense;
     private int speed;
     private int accuracy;
-    private double luck;
+    private int luck;
     private int level;
     private int healthPoints;
     private int expPoints;
     private int totalHP;
+    private double initialStrength;
     
     private CharacterType character = null;
     
@@ -29,7 +30,13 @@ public abstract class ConcreteCharacter implements Character {
     
     public abstract void getWeapon();
     
-    public abstract void takeDamage(int damage);
+    public int takeDamage(int damage) {
+        int hp = getHealthPoints();
+        damage = damage - (int)(damage * getDefense() * 0.01);
+        hp = hp - damage;
+        setHealthPoints(hp);
+        return damage;
+    }
 
     public void levelUp() {
         setTotalHP((int)(getTotalHP() * 1.20));
@@ -37,10 +44,10 @@ public abstract class ConcreteCharacter implements Character {
     }
     
     public int getStrength() {
-        return strength;
+        return (int)(level * initialStrength);
     }
 
-    public void setStrength(int strength) {
+    public void setStrength(double strength) {
         this.strength = strength;
     }
     
@@ -68,11 +75,11 @@ public abstract class ConcreteCharacter implements Character {
         this.accuracy = accuracy;
     }
     
-    public double getLuck() {
+    public int getLuck() {
         return luck;
     }
 
-    public void setLuck(double luck) {
+    public void setLuck(int luck) {
         this.luck = luck;
     }
     
@@ -133,5 +140,22 @@ public abstract class ConcreteCharacter implements Character {
     
     public void setTotalHP(int totalHP) {
         this.totalHP = totalHP;
+    }
+    
+    public double getInitialStrength() {
+        return initialStrength;
+    }
+    
+    public void setInitialStrength(double initialStrength) {
+        this.initialStrength = initialStrength;
+    }
+    
+    public void printStats() {
+        System.out.println("Stats:");
+        System.out.println("Strength: " + getStrength());
+        System.out.println("Defense: " + getDefense());
+        System.out.println("Speed: " + getSpeed());
+        System.out.println("Accuracy: " + getAccuracy());
+        System.out.println("Luck: " + getLuck());
     }
 }

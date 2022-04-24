@@ -5,11 +5,12 @@ import java.util.Random;
 public class FaerieCharacter extends ConcreteCharacter {
     public FaerieCharacter() {
         super(CharacterType.FAERIE);
-        this.setStrength(13);
-        this.setDefense(10);
-        this.setSpeed(15);
-        this.setAccuracy(11);
-        this.setLuck(0.07);
+        this.setInitialStrength(5);
+        this.setStrength(getInitialStrength());
+        this.setDefense(40);
+        this.setSpeed(20);
+        this.setAccuracy(25);
+        this.setLuck(13);
         this.setHealthPoints(100);
         
         construct();
@@ -40,13 +41,8 @@ public class FaerieCharacter extends ConcreteCharacter {
             }
             System.out.println("You healed yourself! You now have " + getHealthPoints() + " HP!");
         }
-        return level * 5;
+        return level * getStrength();
     }
 
-    @Override
-    public void takeDamage(int damage) {
-        int hp = getHealthPoints();
-        hp = hp - damage;
-        setHealthPoints(hp); 
-    }
+
 }

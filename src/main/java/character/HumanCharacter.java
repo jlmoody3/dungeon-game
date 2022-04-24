@@ -3,11 +3,12 @@ package main.java.character;
 public class HumanCharacter extends ConcreteCharacter {
     public HumanCharacter() {
         super(CharacterType.HUMAN);
-        this.setStrength(13);
+        this.setInitialStrength(10);
+        this.setStrength(getInitialStrength());
         this.setDefense(10);
-        this.setSpeed(15);
-        this.setAccuracy(11);
-        this.setLuck(0.07);
+        this.setSpeed(30);
+        this.setAccuracy(20);
+        this.setLuck(15);
         this.setHealthPoints(100);
         
         construct();
@@ -19,7 +20,7 @@ public class HumanCharacter extends ConcreteCharacter {
 
     @Override
     public int strike(int level) {
-        return level * 10;
+        return level * getStrength();
     }
 
     @Override
@@ -28,10 +29,5 @@ public class HumanCharacter extends ConcreteCharacter {
         
     }
 
-    @Override
-    public void takeDamage(int damage) {
-        int hp = getHealthPoints();
-        hp = hp - damage;
-        setHealthPoints(hp); 
-    }
+
 }
