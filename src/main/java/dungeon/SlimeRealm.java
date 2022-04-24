@@ -23,10 +23,9 @@ public class SlimeRealm implements State{
         if (floor % 10 == 0) {
             return random.nextInt(floor) + 10;
         }
-        else if (floor % 5 == 0) {
+        else {
             return random.nextInt(floor) + 5;
         }
-        return floor;
     }
 
     @Override
@@ -60,7 +59,12 @@ public class SlimeRealm implements State{
     }
     
     public void setEnemyHP(int hp) {
-        enemyHP = hp;
+        if (hp <= 0) {
+            enemyHP = 0;
+        }
+        else {
+            enemyHP = hp;
+        }
     }
     
     public int getEnemyHP() {

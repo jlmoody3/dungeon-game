@@ -21,12 +21,14 @@ public class FireRealm implements State{
     public int calculateDamage(int floor) {
         Random random = new Random();
         if (floor % 10 == 0) {
-            return random.nextInt(floor) + 10;
+            return random.nextInt(floor) + 20;
         }
         else if (floor % 5 == 0) {
-            return random.nextInt(floor) + 5;
+            return random.nextInt(floor) + 15;
         }
-        return floor;
+        else {
+            return random.nextInt(floor) + 10;
+        }
     }
     
     @Override
@@ -55,12 +57,17 @@ public class FireRealm implements State{
     }
     
     public int calculateTotalHP(int floor) {
-        int totalHP = floor * 2 + 10;
+        int totalHP = floor * 3 + 10;
         return totalHP;
     }
     
     public void setEnemyHP(int hp) {
-        enemyHP = hp;
+        if (hp <= 0) {
+            enemyHP = 0;
+        }
+        else {
+            enemyHP = hp;
+        }
     }
     
     public int getEnemyHP() {

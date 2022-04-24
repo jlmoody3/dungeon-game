@@ -85,20 +85,24 @@ public class Main {
                 char1.takeDamage(damage);
                 System.out.println("It dealt " + damage + " damaage.");          
                 System.out.println("You have " + char1.getHealthPoints() + " HP left.");
-                int damageToEnemy = char1.strike(char1.getLevel());
-                System.out.println("You strike!");
-                dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
-                System.out.println("You dealt " + damageToEnemy + " damaage.");          
-                System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                if (char1.getHealthPoints() <= 0) {
+                    System.out.println("You lose.");
+                    floor = dungeon.getNumFloors() + 1;
+                }
+                else {
+                    int damageToEnemy = char1.strike(char1.getLevel());
+                    System.out.println("You strike!");
+                    dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
+                    System.out.println("You dealt " + damageToEnemy + " damaage.");          
+                    System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                }
             }
-            
-            dungeon.getRealm().changeRealm(dungeon);
-            floor++;
-            dungeon.setFloor(floor);    
-        }
-        
-        
-        
-    }
 
+            if (char1.getHealthPoints() > 0) {
+                dungeon.getRealm().changeRealm(dungeon);
+                floor++;
+                dungeon.setFloor(floor);
+            }    
+        } 
+    }
 }
