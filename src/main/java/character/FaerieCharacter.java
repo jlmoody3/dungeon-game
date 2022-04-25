@@ -28,6 +28,12 @@ public class FaerieCharacter extends ConcreteCharacter {
 
     @Override
     public int strike(int level) {
+        
+        return getStrength();
+    }
+
+    @Override
+    public void specialSkill() {
         Random random = new Random();
         int chance = random.nextInt(5);
         int hp;
@@ -41,8 +47,6 @@ public class FaerieCharacter extends ConcreteCharacter {
             }
             System.out.println("You healed yourself! You now have " + getHealthPoints() + " HP!");
         }
-        return getStrength();
     }
-
 
 }

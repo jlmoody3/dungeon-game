@@ -6,6 +6,7 @@ public abstract class ConcreteCharacter implements Character {
     final int MAX_ACCURACY = 50;
     final int MAX_SPEED = 50;
     final int MAX_LUCK = 100;
+    final int MAX_CRITICAL_STRIKE = 100;
     
     private double strength;
     private int defense;
@@ -17,6 +18,7 @@ public abstract class ConcreteCharacter implements Character {
     private int expPoints;
     private int totalHP;
     private double initialStrength;
+    private int criticalStrike;
     
     private CharacterType character = null;
     
@@ -25,6 +27,7 @@ public abstract class ConcreteCharacter implements Character {
         level = 1;
         expPoints = 0;
         totalHP = 100;
+        criticalStrike = 5;
     }
     
     public abstract void construct();
@@ -48,6 +51,7 @@ public abstract class ConcreteCharacter implements Character {
         setSpeed(getSpeed() + 2);
         setAccuracy(getAccuracy() + 2);
         setLuck(getLuck() + 2);
+        setCriticalStrike(getCriticalStrike() + 1);
     }
     
     public boolean strikeFirst() {
@@ -72,6 +76,19 @@ public abstract class ConcreteCharacter implements Character {
         Random random = new Random();
         int chance = random.nextInt(MAX_LUCK);
         if (chance <= luck) {
+            return true;
+        }
+        return false;
+    }
+    
+    public void specialSkill() {
+        
+    }
+    
+    public boolean criticalStrike() {
+        Random random = new Random();
+        int chance = random.nextInt(MAX_CRITICAL_STRIKE);
+        if (chance <= criticalStrike) {
             return true;
         }
         return false;
@@ -182,6 +199,14 @@ public abstract class ConcreteCharacter implements Character {
     
     public void setInitialStrength(double initialStrength) {
         this.initialStrength = initialStrength;
+    }
+    
+    public int getCriticalStrike() {
+        return criticalStrike;
+    }
+    
+    public void setCriticalStrike(int criticalStrike) {
+        this.criticalStrike = criticalStrike;
     }
     
     public void printStats() {

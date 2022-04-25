@@ -90,12 +90,18 @@ public class Main {
                     boolean fail = char1.strikeFail();
                     if (first) {
                         if (char1.getHealthPoints() > 0) {
+                            char1.specialSkill();
                             int damageToEnemy = char1.strike(char1.getLevel());
                             System.out.println("You strike!");
                             if (!fail) {
+                                if(char1.criticalStrike()) {
+                                    damageToEnemy = damageToEnemy + char1.strike(char1.getLevel());
+                                    System.out.println("Critical strike!");
+                                }
                                 dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
                                 System.out.println("You dealt " + damageToEnemy + " damage.");          
                                 System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                                
                             }
                             else {
                                 System.out.println("You missed!");
