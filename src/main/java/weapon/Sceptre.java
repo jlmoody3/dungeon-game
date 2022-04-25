@@ -2,13 +2,12 @@ package main.java.weapon;
 
 import main.java.character.Character;
 
-public class Power extends Weapon {
-    static final int STARTING_DAMAGE = 10;
+public class Sceptre extends Weapon {
+    static final int STARTING_DAMAGE = 15;
     
-    public Power(Character character) {
+    public Sceptre(Character character) {
         super(character);
         this.setDamage(STARTING_DAMAGE);
-        System.out.println("You have power.");
     }
 
     @Override
@@ -22,5 +21,11 @@ public class Power extends Weapon {
         // TODO Auto-generated method stub
         return 0;
     }
+    
+    @Override
+    public String toString() {
+        return "Sceptre";
+    }
+
 
 }

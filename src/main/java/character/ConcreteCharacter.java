@@ -1,6 +1,16 @@
 package main.java.character;
 
+import java.util.ArrayList;
 import java.util.Random;
+
+import main.java.item.PermanentItem;
+import main.java.item.TemporaryItem;
+import main.java.weapon.Bow;
+import main.java.weapon.Club;
+import main.java.weapon.Sceptre;
+import main.java.weapon.Sword;
+import main.java.weapon.Wand;
+import main.java.weapon.Weapon;
 
 public abstract class ConcreteCharacter implements Character {
     final int MAX_ACCURACY = 50;
@@ -19,7 +29,11 @@ public abstract class ConcreteCharacter implements Character {
     private int totalHP;
     private double initialStrength;
     private int criticalStrike;
-    
+
+    private ArrayList<Weapon> weapons;
+    private ArrayList<PermanentItem> permanentItems;
+    private ArrayList<TemporaryItem> temporaryItems;
+
     private CharacterType character = null;
     
     public ConcreteCharacter(CharacterType character) {
@@ -34,7 +48,50 @@ public abstract class ConcreteCharacter implements Character {
     
     public abstract int strike(int level);
     
-    public abstract void getWeapon();
+    public void getWeapon() {
+        Random random = new Random();
+        int chance = random.nextInt(5) + 1;
+        Weapon newWeapon = null;
+
+        switch(chance) {
+        case 1:
+            newWeapon = new Sword(this);
+            System.out.println("You found a Sword!");
+            break;
+        case 2:
+            newWeapon = new Bow(this);
+            System.out.println("You found a Bow!");
+            break;
+        case 3:
+            newWeapon = new Club(this);
+            System.out.println("You found a Club!");
+            break;
+        case 4:
+            newWeapon = new Wand(this);
+            System.out.println("You found a Wand!");
+            break;
+        case 5:
+            newWeapon = new Sceptre(this);
+            System.out.println("You found a Sceptre!");
+            break;
+        default:
+            break;
+        }
+        boolean hasWeapon = false;
+        boolean dropWeapon = false;
+        for (int i = 0; i < getWeapons().size(); i++) {
+            if(weapons.get(i).equals(newWeapon)) {
+                System.out.println("You already have a " + newWeapon.toString() + ".");
+                hasWeapon = true;
+            } else if (newWeapon.getDamage() < weapons.get(i).getDamage()) {
+                System.out.println("You decide not to take the" + newWeapon.toString() + ".");
+                dropWeapon = true;
+            }
+        }
+        if (!hasWeapon && !dropWeapon) {
+            weapons.add(newWeapon);
+        }
+    }
     
     public int takeDamage(int damage) {
         int hp = getHealthPoints();
@@ -92,6 +149,19 @@ public abstract class ConcreteCharacter implements Character {
             return true;
         }
         return false;
+    }
+    
+    public void getTreasure() {
+        Random random = new Random();
+        int chance = random.nextInt(5);
+        if (chance == 4) {
+            getWeapon();
+        } else if (chance == 3) {
+            getItem(this);
+        } else {
+            getPotion();
+        }
+            
     }
     
     public int getStrength() {
@@ -207,6 +277,14 @@ public abstract class ConcreteCharacter implements Character {
     
     public void setCriticalStrike(int criticalStrike) {
         this.criticalStrike = criticalStrike;
+    }
+    
+    public ArrayList<Weapon> getWeapons() {
+        return weapons;
+    }
+    
+    public void setWeapons(Weapon weapon) {
+        weapons.add(weapon);
     }
     
     public void printStats() {

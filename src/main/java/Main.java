@@ -6,7 +6,12 @@ import main.java.character.CharacterFactory;
 import main.java.character.CharacterType;
 import main.java.character.ConcreteCharacter;
 import main.java.dungeon.Dungeon;
-import main.java.weapon.*;
+import main.java.weapon.Bow;
+import main.java.weapon.Club;
+import main.java.weapon.Sceptre;
+import main.java.weapon.Sword;
+import main.java.weapon.Wand;
+import main.java.weapon.Weapon;
 
 /**
  * Main class for Dungeon Warrior
@@ -58,12 +63,15 @@ public class Main {
             newWeapon = new Sword(char1);
             break;
         case 4:
-            newWeapon = new Power(char1);
+            newWeapon = new Sceptre(char1);
             break;
         case 5:
             newWeapon = new Wand(char1);
             break;
         }
+        
+        char1.setWeapons(newWeapon);
+        
         
         char1.printStats();
         
@@ -137,6 +145,7 @@ public class Main {
                 if (char1.getHealthPoints() > 0) {
                     if(char1.findTreasure() && floor != dungeon.getNumFloors()) {
                         System.out.println("You found a treasure chest!");
+                        char1.getTreasure();
                     }
                     floor++;
                     dungeon.setFloor(floor);

@@ -8,7 +8,6 @@ public class Sword extends Weapon {
     public Sword(Character character) {
         super(character);
         this.setDamage(STARTING_DAMAGE);
-        System.out.println("You have a sword.");
     }
 
     @Override
@@ -22,5 +21,11 @@ public class Sword extends Weapon {
         // TODO Auto-generated method stub
         return 0;
     }
+    
+    @Override
+    public String toString() {
+        return "Sword";
+    }
+
 
 }

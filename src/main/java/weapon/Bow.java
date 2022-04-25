@@ -8,7 +8,6 @@ public class Bow extends Weapon {
     public Bow(Character character) {
         super(character);
         this.setDamage(STARTING_DAMAGE);
-        System.out.println("You have a bow.");
     }
 
     @Override
@@ -21,6 +20,11 @@ public class Bow extends Weapon {
     public int strike(int level) {
         // TODO Auto-generated method stub
         return 0;
+    }
+    
+    @Override
+    public String toString() {
+        return "Bow";
     }
 
 }

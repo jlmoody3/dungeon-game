@@ -8,7 +8,6 @@ public class Wand extends Weapon {
     public Wand(Character character) {
         super(character);
         this.setDamage(STARTING_DAMAGE);
-        System.out.println("You have a wand.");
     }
 
     @Override
@@ -22,5 +21,11 @@ public class Wand extends Weapon {
         // TODO Auto-generated method stub
         return 0;
     }
+    
+    @Override
+    public String toString() {
+        return "Wand";
+    }
+
 
 }
