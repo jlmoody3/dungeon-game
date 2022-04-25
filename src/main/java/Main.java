@@ -71,8 +71,7 @@ public class Main {
         }
         
         char1.setWeapons(newWeapon);
-        
-        
+
         char1.printStats();
         
         Dungeon dungeon = new Dungeon();
@@ -99,11 +98,28 @@ public class Main {
                     if (first) {
                         if (char1.getHealthPoints() > 0) {
                             char1.specialSkill();
-                            int damageToEnemy = char1.strike(char1.getLevel());
-                            System.out.println("You strike!");
+                            Weapon weapon = newWeapon.whichWeapon(char1);
+                            if (weapon.getClass() == Sword.class) {
+                                newWeapon = new Sword(newWeapon);
+                                System.out.println("You swing your sword!");
+                            } else if (weapon.getClass() == Bow.class) {
+                                newWeapon = new Bow(newWeapon);
+                                System.out.println("You fire your bow!");
+                            } else if (weapon.getClass() == Club.class) {
+                                newWeapon = new Club(newWeapon);
+                                System.out.println("You swing your club!");
+                            } else if (weapon.getClass() == Wand.class) {
+                                newWeapon = new Wand(newWeapon);
+                                System.out.println("You wave your wand!");
+                            } else if (weapon.getClass() == Sceptre.class) {
+                                newWeapon = new Sceptre(newWeapon);
+                                System.out.println("You use your sceptre!");
+                            }
+                            int damageToEnemy = newWeapon.strike(char1);
+                            //System.out.println("You strike!");
                             if (!fail) {
                                 if(char1.criticalStrike()) {
-                                    damageToEnemy = damageToEnemy + char1.strike(char1.getLevel());
+                                    damageToEnemy = damageToEnemy + newWeapon.strike(char1);
                                     System.out.println("Critical strike!");
                                 }
                                 dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);

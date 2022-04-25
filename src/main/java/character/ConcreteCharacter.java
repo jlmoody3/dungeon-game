@@ -31,8 +31,8 @@ public abstract class ConcreteCharacter implements Character {
     private int criticalStrike;
 
     private ArrayList<Weapon> weapons;
-    private ArrayList<PermanentItem> permanentItems;
-    private ArrayList<TemporaryItem> temporaryItems;
+    //private ArrayList<PermanentItem> permanentItems;
+    //private ArrayList<TemporaryItem> temporaryItems;
 
     private CharacterType character = null;
     
@@ -42,11 +42,12 @@ public abstract class ConcreteCharacter implements Character {
         expPoints = 0;
         totalHP = 100;
         criticalStrike = 5;
+        weapons = new ArrayList<Weapon>();
     }
     
     public abstract void construct();
     
-    public abstract int strike(int level);
+    public abstract int strike(ConcreteCharacter character);
     
     public void getWeapon() {
         Random random = new Random();
@@ -80,13 +81,15 @@ public abstract class ConcreteCharacter implements Character {
         boolean hasWeapon = false;
         boolean dropWeapon = false;
         for (int i = 0; i < getWeapons().size(); i++) {
-            if(weapons.get(i).equals(newWeapon)) {
+            if(weapons.get(i).getClass().equals(newWeapon.getClass())) {
                 System.out.println("You already have a " + newWeapon.toString() + ".");
                 hasWeapon = true;
             } else if (newWeapon.getDamage() < weapons.get(i).getDamage()) {
-                System.out.println("You decide not to take the" + newWeapon.toString() + ".");
                 dropWeapon = true;
             }
+        }
+        if (dropWeapon) {
+            System.out.println("You decide not to take the " + newWeapon.toString() + ".");
         }
         if (!hasWeapon && !dropWeapon) {
             weapons.add(newWeapon);
@@ -154,18 +157,19 @@ public abstract class ConcreteCharacter implements Character {
     public void getTreasure() {
         Random random = new Random();
         int chance = random.nextInt(5);
-        if (chance == 4) {
+        if (chance <= 4) {
             getWeapon();
         } else if (chance == 3) {
-            getItem(this);
+            //getItem(this);
         } else {
-            getPotion();
+            //getPotion();
         }
             
     }
     
     public int getStrength() {
-        return (int)(level * initialStrength);
+        strength = level * initialStrength;
+        return (int) strength;
     }
 
     public void setStrength(double strength) {

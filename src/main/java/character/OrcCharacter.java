@@ -19,14 +19,7 @@ public class OrcCharacter extends ConcreteCharacter{
     }
 
     @Override
-    public int strike(int level) {
+    public int strike(ConcreteCharacter character) {
         return getStrength();
     }
-
-    @Override
-    public void getWeapon() {
-        // TODO Auto-generated method stub
-        
-    }
-
 }

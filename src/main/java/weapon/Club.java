@@ -1,6 +1,7 @@
 package main.java.weapon;
 
 import main.java.character.Character;
+import main.java.character.ConcreteCharacter;
 
 public class Club extends Weapon {
     static final int STARTING_DAMAGE = 15;
@@ -17,9 +18,8 @@ public class Club extends Weapon {
     }
 
     @Override
-    public int strike(int level) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int strike(ConcreteCharacter character) {
+        return character.getLevel() * STARTING_DAMAGE;
     }
     
     @Override

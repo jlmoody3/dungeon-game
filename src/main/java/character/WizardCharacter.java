@@ -3,8 +3,8 @@ package main.java.character;
 import java.util.Random;
 
 public class WizardCharacter extends ConcreteCharacter {
-    final int LOW_STRENGTH = 5;
-    final int HIGH_STRENGTH = 20;
+    static final int LOW_STRENGTH = 5;
+    static final int HIGH_STRENGTH = 20;
     
     private int lowStrength;
     private int highStrength;
@@ -27,18 +27,12 @@ public class WizardCharacter extends ConcreteCharacter {
     }
 
     @Override
-    public int strike(int level) {
+    public int strike(ConcreteCharacter character) {
         Random random = new Random();
         
-        return random.nextInt(level * HIGH_STRENGTH) + level * LOW_STRENGTH;
+        return random.nextInt(getLevel() * HIGH_STRENGTH) + getLevel() * LOW_STRENGTH;
     }
 
-    @Override
-    public void getWeapon() {
-        // TODO Auto-generated method stub
-        
-    }
-    
     @Override
     public void printStats() {
         System.out.println("Stats:");

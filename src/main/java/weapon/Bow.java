@@ -1,13 +1,14 @@
 package main.java.weapon;
 
 import main.java.character.Character;
+import main.java.character.ConcreteCharacter;
 
 public class Bow extends Weapon {
-    static final int STARTING_DAMAGE = 7;
+    static final double STARTING_DAMAGE = 7.5;
     
     public Bow(Character character) {
         super(character);
-        this.setDamage(STARTING_DAMAGE);
+        this.setDamage((int) STARTING_DAMAGE);
     }
 
     @Override
@@ -17,9 +18,8 @@ public class Bow extends Weapon {
     }
 
     @Override
-    public int strike(int level) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int strike(ConcreteCharacter character) {
+        return (int)(character.getLevel() * STARTING_DAMAGE);
     }
     
     @Override

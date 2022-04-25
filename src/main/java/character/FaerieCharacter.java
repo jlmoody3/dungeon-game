@@ -21,14 +21,7 @@ public class FaerieCharacter extends ConcreteCharacter {
     }
 
     @Override
-    public void getWeapon() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public int strike(int level) {
-        
+    public int strike(ConcreteCharacter character) {
         return getStrength();
     }
 
