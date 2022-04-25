@@ -20,7 +20,7 @@ public class HumanCharacter extends ConcreteCharacter {
 
     @Override
     public int strike(int level) {
-        return level * getStrength();
+        return getStrength();
     }
 
     @Override

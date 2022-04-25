@@ -3,7 +3,10 @@ package main.java.character;
 import java.util.Random;
 
 public abstract class ConcreteCharacter implements Character {
-    protected String name;
+    final int MAX_ACCURACY = 50;
+    final int MAX_SPEED = 50;
+    final int MAX_LUCK = 100;
+    
     private double strength;
     private int defense;
     private int speed;
@@ -41,6 +44,37 @@ public abstract class ConcreteCharacter implements Character {
     public void levelUp() {
         setTotalHP((int)(getTotalHP() * 1.20));
         setHealthPoints(getTotalHP());
+        setDefense(getDefense() + 2);
+        setSpeed(getSpeed() + 2);
+        setAccuracy(getAccuracy() + 2);
+        setLuck(getLuck() + 2);
+    }
+    
+    public boolean strikeFirst() {
+        Random random = new Random();
+        int chance = random.nextInt(MAX_SPEED);
+        if (chance <= speed) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean strikeFail() {
+        Random random = new Random();
+        int chance = random.nextInt(MAX_ACCURACY);
+        if (chance <= accuracy) {
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean findTreasure() {
+        Random random = new Random();
+        int chance = random.nextInt(MAX_LUCK);
+        if (chance <= luck) {
+            return true;
+        }
+        return false;
     }
     
     public int getStrength() {

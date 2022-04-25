@@ -30,7 +30,7 @@ public class WizardCharacter extends ConcreteCharacter {
     public int strike(int level) {
         Random random = new Random();
         
-        return random.nextInt(level * 20) + level * 5;
+        return random.nextInt(level * HIGH_STRENGTH) + level * LOW_STRENGTH;
     }
 
     @Override

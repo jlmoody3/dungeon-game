@@ -85,22 +85,36 @@ public class Main {
                 System.out.println("It has " + totalEnemyHP + " HP.");
                 
                 // battle sequence
-                while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) {
-                    System.out.println("It strikes!");
-                    int damage = dungeon.getRealm().calculateDamage(floor);
-                    System.out.println("It dealt " + damage + " damage.");
-                    damage = char1.takeDamage(damage);
-                    System.out.println("You took " + damage + " damage.");          
-                    System.out.println("You have " + char1.getHealthPoints() + " HP left.");
-                    if (char1.getHealthPoints() > 0) {
-                        int damageToEnemy = char1.strike(char1.getLevel());
-                        System.out.println("You strike!");
-                        dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
-                        System.out.println("You dealt " + damageToEnemy + " damage.");          
-                        System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                boolean first = char1.strikeFirst();
+                while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) { 
+                    boolean fail = char1.strikeFail();
+                    if (first) {
+                        if (char1.getHealthPoints() > 0) {
+                            int damageToEnemy = char1.strike(char1.getLevel());
+                            System.out.println("You strike!");
+                            if (!fail) {
+                                dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
+                                System.out.println("You dealt " + damageToEnemy + " damage.");          
+                                System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                            }
+                            else {
+                                System.out.println("You missed!");
+                            }
+                            first = false;
+                        }
+                    }
+                    else {
+                        System.out.println("It strikes!");
+                        int damage = dungeon.getRealm().calculateDamage(floor);
+                        System.out.println("It dealt " + damage + " damage.");
+                        damage = char1.takeDamage(damage);
+                        System.out.println("You took " + damage + " damage.");          
+                        System.out.println("You have " + char1.getHealthPoints() + " HP left.");
+                        first = true;
                     }
                 }
-                if(dungeon.getRealm().getEnemyHP() <= 0) {
+                
+                if(dungeon.getRealm().getEnemyHP() <= 0 && floor != dungeon.getNumFloors()) {
                     int level1, level2;
                     level1 = char1.getLevel();
                     char1.setExpPoints(char1.getExpPoints() + totalEnemyHP);
@@ -110,10 +124,14 @@ public class Main {
                         System.out.println("You leveled up!");
                         System.out.println("You are now at level " + level2 + ".");
                         System.out.println("You have " + char1.getHealthPoints() + " HP!");
+                        char1.printStats();
                     }
                 }
                 
                 if (char1.getHealthPoints() > 0) {
+                    if(char1.findTreasure() && floor != dungeon.getNumFloors()) {
+                        System.out.println("You found a treasure chest!");
+                    }
                     floor++;
                     dungeon.setFloor(floor);
                 }

@@ -41,7 +41,7 @@ public class FaerieCharacter extends ConcreteCharacter {
             }
             System.out.println("You healed yourself! You now have " + getHealthPoints() + " HP!");
         }
-        return level * getStrength();
+        return getStrength();
     }
 
 
