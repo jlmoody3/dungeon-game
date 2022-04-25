@@ -4,7 +4,11 @@ import main.java.character.Character;
 
 public class Bow extends Weapon {
     static final int STARTING_DAMAGE = 7;
-    
+
+    /**
+     * Constructor for Bow class. Sets starting damage.
+     * @param character
+     */
     public Bow(Character character) {
         super(character);
         this.setDamage(STARTING_DAMAGE);
@@ -14,7 +18,7 @@ public class Bow extends Weapon {
     @Override
     public void construct() {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -22,5 +26,4 @@ public class Bow extends Weapon {
         // TODO Auto-generated method stub
         return 0;
     }
-
 }

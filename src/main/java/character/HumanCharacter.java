@@ -1,6 +1,10 @@
 package main.java.character;
 
 public class HumanCharacter extends ConcreteCharacter {
+
+    /**
+     * Constructor for HumanCharacter class. Sets initial stats.
+     */
     public HumanCharacter() {
         super(CharacterType.HUMAN);
         this.setInitialStrength(10);
@@ -10,10 +14,10 @@ public class HumanCharacter extends ConcreteCharacter {
         this.setAccuracy(20);
         this.setLuck(15);
         this.setHealthPoints(100);
-        
+
         construct();
     }
-    
+
     public void construct() {
         System.out.println("Congratulations! You are a human.");
     }
@@ -26,7 +30,6 @@ public class HumanCharacter extends ConcreteCharacter {
     @Override
     public void getWeapon() {
         // TODO Auto-generated method stub
-        
     }
 
 
