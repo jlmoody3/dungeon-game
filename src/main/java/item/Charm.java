@@ -2,11 +2,11 @@ package main.java.item;
 
 import main.java.character.Character;
 
-public class Helmet extends PermanentItem {
+public class Charm extends PermanentItem {
 
-    static final int EFFECT_INCREASE = 3;
+    static final int EFFECT_INCREASE = 5;
 
-    public Helmet(Character character) {
+    public Charm(Character character) {
         super(character);
     }
 

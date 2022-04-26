@@ -8,6 +8,7 @@ import main.java.character.ConcreteCharacter;
 import main.java.dungeon.Dungeon;
 import main.java.item.Item;
 import main.java.item.PermanentItem;
+import main.java.item.TemporaryItem;
 import main.java.weapon.Bow;
 import main.java.weapon.Club;
 import main.java.weapon.Sceptre;
@@ -166,8 +167,9 @@ public class Main {
                 if (char1.getHealthPoints() > 0) {
                     if (char1.findTreasure() && floor != dungeon.getNumFloors()) {
                         System.out.println("You found a treasure chest!");
-                        Item item = new PermanentItem(char1);
-                        char1.getTreasure(newWeapon, item);
+                        PermanentItem item = new PermanentItem(char1);
+                        TemporaryItem potion = new TemporaryItem(char1);
+                        char1.getTreasure(newWeapon, item, potion);
                     }
                     floor++;
                     dungeon.setFloor(floor);

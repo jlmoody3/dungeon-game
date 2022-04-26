@@ -79,6 +79,7 @@ public abstract class ConcreteCharacter implements Character {
         setAccuracy(getAccuracy() + 2);
         setLuck(getLuck() + 2);
         setCriticalStrike(getCriticalStrike() + 1);
+        setStrength(level * initialStrength);
     }
 
     /**
@@ -137,7 +138,7 @@ public abstract class ConcreteCharacter implements Character {
         return false;
     }
     
-    public void getTreasure(Weapon newWeapon, Item item) {
+    public void getTreasure(Weapon newWeapon, PermanentItem item, TemporaryItem potion) {
         Random random = new Random();
         int chance = random.nextInt(5);
         if (chance == 4) {
@@ -145,13 +146,12 @@ public abstract class ConcreteCharacter implements Character {
         } else if (chance == 3) {
             item.getItem(this, item);
         } else {
-            //getPotion();
+            potion.getItem(this, potion);
         }
             
     }
     
     public int getStrength() {
-        strength = level * initialStrength;
         return (int) strength;
     }
 
@@ -277,5 +277,6 @@ public abstract class ConcreteCharacter implements Character {
         System.out.println("Speed: " + getSpeed());
         System.out.println("Accuracy: " + getAccuracy());
         System.out.println("Luck: " + getLuck());
+        System.out.println("Critical Strike: " + getCriticalStrike());
     }
 }
