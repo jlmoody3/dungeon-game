@@ -20,9 +20,9 @@ public class CandyRealm implements State {
     public int calculateDamage(int floor) {
         Random random = new Random();
         if (floor % 10 == 0) {
-            return random.nextInt(10) + floor;
+            return random.nextInt(10) + floor + 10;
         } else {
-            return random.nextInt(5) + floor;
+            return random.nextInt(5) + floor + 5;
         }
     }
 
@@ -33,22 +33,26 @@ public class CandyRealm implements State {
 
     @Override
     public void chooseEnemy() {
-        Random random = new Random();
-        int enemy = 0;
-        enemy = random.nextInt(3) + 1;
+        if (dungeon.getFloor() % 5 == 0) {
+            System.out.println("The Psychic Gobstopper appeared!");
+        } else {
+            Random random = new Random();
+            int enemy = 0;
+            enemy = random.nextInt(3) + 1;
 
-        switch(enemy) {
-        case 1:
-            System.out.println("A candy blob appeared!");
-            break;
-        case 2:
-            System.out.println("A candy goblin appeared!");
-            break;
-        case 3:
-            System.out.println("A candy robot appeared!");
-            break;
-        default:
-            break;
+            switch(enemy) {
+            case 1:
+                System.out.println("A candy blob appeared!");
+                break;
+            case 2:
+                System.out.println("A candy goblin appeared!");
+                break;
+            case 3:
+                System.out.println("A candy robot appeared!");
+                break;
+            default:
+                break;
+            }
         }
     }
 

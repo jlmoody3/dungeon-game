@@ -52,10 +52,11 @@ public abstract class ConcreteCharacter implements Character {
     }
 
     public abstract void construct();
-    
+
     public abstract int strike(ConcreteCharacter character);
-    
-    
+
+    public abstract void specialSkill();
+
     /**
      * Method that specifies how much damage the character will take
      * @param damage - damage inflicted by enemy
@@ -120,10 +121,6 @@ public abstract class ConcreteCharacter implements Character {
             return true;
         }
         return false;
-    }
-
-    public void specialSkill() {
-
     }
 
     /**

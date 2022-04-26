@@ -20,11 +20,11 @@ public class GoldRealm implements State {
     public int calculateDamage(int floor) {
         Random random = new Random();
         if (floor % 10 == 0) {
-            return random.nextInt(20) + (int) (floor * 1.5);
+            return random.nextInt(20) + (int) (floor * 4);
         } else if (floor % 5 == 0) {
-            return random.nextInt(15) + (int) (floor * 1.5);
+            return random.nextInt(15) + (int) (floor * 3);
         } else {
-            return random.nextInt(10) + (int) (floor * 1.5);
+            return random.nextInt(10) + (int) (floor * 2);
         }
     }
 
@@ -35,22 +35,26 @@ public class GoldRealm implements State {
 
     @Override
     public void chooseEnemy() {
-        Random random = new Random();
-        int enemy = 0;
-        enemy = random.nextInt(3) + 1;
+        if (dungeon.getFloor() % 5 == 0) {
+            System.out.println("The Golden Gorgon appeared!");
+        } else {
+            Random random = new Random();
+            int enemy = 0;
+            enemy = random.nextInt(3) + 1;
 
-        switch(enemy) {
-        case 1:
-            System.out.println("A gold blob appeared!");
-            break;
-        case 2:
-            System.out.println("A gold serpent appeared!");
-            break;
-        case 3:
-            System.out.println("A gold dragon appeared!");
-            break;
-        default:
-            break;
+            switch(enemy) {
+            case 1:
+                System.out.println("A gold blob appeared!");
+                break;
+            case 2:
+                System.out.println("A gold serpent appeared!");
+                break;
+            case 3:
+                System.out.println("A gold dragon appeared!");
+                break;
+            default:
+                break;
+            }
         }
     }
 

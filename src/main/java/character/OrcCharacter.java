@@ -29,7 +29,12 @@ public class OrcCharacter extends ConcreteCharacter {
 
     @Override
     public int addEffects(Character character) {
-        // TODO Auto-generated method stub
+
         return 0;
+    }
+
+    @Override
+    public void specialSkill() {
+
     }
 }

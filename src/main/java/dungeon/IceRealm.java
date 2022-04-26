@@ -20,9 +20,9 @@ public class IceRealm implements State {
     public int calculateDamage(int floor) {
         Random random = new Random();
         if (floor % 10 == 0) {
-            return random.nextInt(20) + (int) (floor * 1.5);
+            return random.nextInt(20) + (int) (floor * 3);
         } else if (floor % 5 == 0) {
-            return random.nextInt(15) + (int) (floor * 1.5);
+            return random.nextInt(15) + (int) (floor * 2);
         } else {
             return random.nextInt(10) + (int) (floor * 1.5);
         }
@@ -35,22 +35,26 @@ public class IceRealm implements State {
 
     @Override
     public void chooseEnemy() {
-        Random random = new Random();
-        int enemy = 0;
-        enemy = random.nextInt(3) + 1;
+        if (dungeon.getFloor() % 5 == 0) {
+            System.out.println("The Ice Queen appeared!");
+        } else {
+            Random random = new Random();
+            int enemy = 0;
+            enemy = random.nextInt(3) + 1;
 
-        switch(enemy) {
-        case 1:
-            System.out.println("An ice blob appeared!");
-            break;
-        case 2:
-            System.out.println("A ghost appeared!");
-            break;
-        case 3:
-            System.out.println("An angry yeti appeared!");
-            break;
-        default:
-            break;
+            switch(enemy) {
+            case 1:
+                System.out.println("An ice blob appeared!");
+                break;
+            case 2:
+                System.out.println("A ghost appeared!");
+                break;
+            case 3:
+                System.out.println("An angry yeti appeared!");
+                break;
+            default:
+                break;
+            }
         }
     }
 

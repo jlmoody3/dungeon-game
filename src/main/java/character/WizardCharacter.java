@@ -2,6 +2,10 @@ package main.java.character;
 
 import java.util.Random;
 
+import main.java.item.PermanentItem;
+import main.java.item.TemporaryItem;
+import main.java.weapon.Weapon;
+
 public class WizardCharacter extends ConcreteCharacter {
     static final int LOW_STRENGTH = 5;
     static final int HIGH_STRENGTH = 20;
@@ -55,5 +59,16 @@ public class WizardCharacter extends ConcreteCharacter {
     public int addEffects(Character character) {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    public void specialSkill() {
+        System.out.println("You used conjure!");
+        System.out.println("You found treasure!");
+        Weapon weapon = getWeapons().get(0);
+        PermanentItem item = new PermanentItem(this);
+        TemporaryItem potion = new TemporaryItem(this);
+        getTreasure(weapon, item, potion);
+        
     }
 }

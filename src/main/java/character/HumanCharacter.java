@@ -32,4 +32,13 @@ public class HumanCharacter extends ConcreteCharacter {
         // TODO Auto-generated method stub
         return 0;
     }
+
+    @Override
+    public void specialSkill() {
+        System.out.println("You used learn!");
+        int expPoints = 10 * getLevel();
+        setExpPoints(getExpPoints() + expPoints);
+        System.out.println("Your XP increased by " + expPoints + " points!");
+        
+    }
 }

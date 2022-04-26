@@ -33,23 +33,28 @@ public class MudRealm implements State {
 
     @Override
     public void chooseEnemy() {
-        Random random = new Random();
-        int enemy = 0;
-        enemy = random.nextInt(3) + 1;
+        if (dungeon.getFloor() % 5 == 0) {
+            System.out.println("The Mega Blob appeared!");
+        } else {
+            Random random = new Random();
+            int enemy = 0;
+            enemy = random.nextInt(3) + 1;
 
-        switch(enemy) {
-        case 1:
-            System.out.println("A mud blob appeared!");
-            break;
-        case 2:
-            System.out.println("A cave spider appeared!");
-            break;
-        case 3:
-            System.out.println("A sewer rat appeared!");
-            break;
-        default:
-            break;
+            switch(enemy) {
+            case 1:
+                System.out.println("A mud blob appeared!");
+                break;
+            case 2:
+                System.out.println("A cave spider appeared!");
+                break;
+            case 3:
+                System.out.println("A sewer rat appeared!");
+                break;
+            default:
+                break;
+            }
         }
+        
     }
 
     /**

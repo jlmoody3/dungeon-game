@@ -109,6 +109,7 @@ public class Main {
                 Random rand = new Random();
                 int chance = 0;
                 int turns = 0;
+                int damageToEnemy = 0;
                 ArrayList<TemporaryItem> tempItems;
                 int potionChoice = 0;
                 // choose who strikes first
@@ -125,6 +126,26 @@ public class Main {
                             }
                             if (chance == 1) {
                                 char1.specialSkill();
+                                if (characterSelection == 2) {
+                                    System.out.println("You used swift!");
+                                    Random r = new Random();
+                                    if (r.nextInt(2) == 0) {
+                                        System.out.println("You shot 2 arrows!");
+                                        damageToEnemy = newWeapon.strike(char1) * 2;
+                                    } else {
+                                        System.out.println("You shot 3 arrows!");
+                                        damageToEnemy = newWeapon.strike(char1) * 3;
+                                    }
+                                    dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
+                                    System.out.println("You dealt " + damageToEnemy + " damage.");
+                                    System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                                } else if (characterSelection == 1) {
+                                    System.out.println("You used pound!");
+                                    damageToEnemy = newWeapon.strike(char1) + char1.getLevel() * 5;
+                                    dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
+                                    System.out.println("You dealt " + damageToEnemy + " damage.");
+                                    System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                                }
                                 first = false;
                             } else if (chance <= 3) {
                                 // choose weapon
@@ -145,7 +166,7 @@ public class Main {
                                     newWeapon = new Sceptre(newWeapon);
                                     System.out.println("You use your sceptre!");
                                 }
-                                int damageToEnemy = newWeapon.strike(char1);
+                                damageToEnemy = newWeapon.strike(char1);
                                 if (!fail) {
                                     if(char1.criticalStrike()) {
                                         damageToEnemy = damageToEnemy + newWeapon.strike(char1);
