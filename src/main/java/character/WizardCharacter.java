@@ -50,4 +50,10 @@ public class WizardCharacter extends ConcreteCharacter {
     public int getHighStrength() {
         return getLevel() * HIGH_STRENGTH;
     }
+
+    @Override
+    public int addEffects(Character character) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

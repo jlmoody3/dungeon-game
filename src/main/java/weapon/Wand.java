@@ -30,5 +30,11 @@ public class Wand extends Weapon {
     public String toString() {
         return "Wand";
     }
+
+    @Override
+    public int addEffects(Character character) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }
 

@@ -30,5 +30,11 @@ public class Club extends Weapon {
     public String toString() {
         return "Club";
     }
+
+    @Override
+    public int addEffects(Character character) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }
 

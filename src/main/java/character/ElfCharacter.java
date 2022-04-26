@@ -27,5 +27,11 @@ public class ElfCharacter extends ConcreteCharacter {
         return (int)(getStrength());
     }
 
+    @Override
+    public int addEffects(Character character) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 
 }

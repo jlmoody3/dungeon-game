@@ -30,4 +30,10 @@ public class Sword extends Weapon {
     public String toString() {
         return "Sword";
     }
+
+    @Override
+    public int addEffects(Character character) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

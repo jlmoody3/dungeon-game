@@ -32,5 +32,11 @@ public class Sceptre extends Weapon {
         return "Sceptre";
     }
 
+    @Override
+    public int addEffects(Character character) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 
 }

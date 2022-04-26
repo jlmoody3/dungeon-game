@@ -8,7 +8,7 @@ import java.util.Random;
 import main.java.character.Character;
 import main.java.character.ConcreteCharacter;
 
-public abstract class Weapon implements Character, Item {
+public abstract class Weapon implements Character {
     private Character character;
     private int damage;
 
@@ -24,9 +24,53 @@ public abstract class Weapon implements Character, Item {
     
     public abstract int strike(ConcreteCharacter character);
     
-    public void addWeapon(Character character) {
-        
+    public void getWeapon(ConcreteCharacter c) {
+        Random random = new Random();
+        int chance = random.nextInt(5) + 1;
+        Weapon newWeapon = null;
+
+        switch(chance) {
+        case 1:
+            newWeapon = new Sword(this);
+            System.out.println("You found a Sword!");
+            break;
+        case 2:
+            newWeapon = new Bow(this);
+            System.out.println("You found a Bow!");
+            break;
+        case 3:
+            newWeapon = new Club(this);
+            System.out.println("You found a Club!");
+            break;
+        case 4:
+            newWeapon = new Wand(this);
+            System.out.println("You found a Wand!");
+            break;
+        case 5:
+            newWeapon = new Sceptre(this);
+            System.out.println("You found a Sceptre!");
+            break;
+        default:
+            break;
+        }
+        boolean hasWeapon = false;
+        boolean dropWeapon = false;
+        for (int i = 0; i < c.getWeapons().size(); i++) {
+            if(c.getWeapons().get(i).getClass().equals(newWeapon.getClass())) {
+                System.out.println("You already have a " + newWeapon.toString() + ".");
+                hasWeapon = true;
+            } else if (newWeapon.getDamage() < c.getWeapons().get(i).getDamage()) {
+                dropWeapon = true;
+            }
+        }
+        if (dropWeapon) {
+            System.out.println("You decide not to take the " + newWeapon.toString() + ".");
+        }
+        if (!hasWeapon && !dropWeapon) {
+            c.getWeapons().add(newWeapon);
+        }
     }
+
     
     public Weapon whichWeapon(ConcreteCharacter c) {
         ArrayList<Weapon> weapons = c.getWeapons();

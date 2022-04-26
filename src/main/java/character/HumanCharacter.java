@@ -26,4 +26,10 @@ public class HumanCharacter extends ConcreteCharacter {
     public int strike(ConcreteCharacter character) {
         return getStrength();
     }
+
+    @Override
+    public int addEffects(Character character) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

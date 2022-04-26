@@ -44,4 +44,10 @@ public class FaerieCharacter extends ConcreteCharacter {
             System.out.println("You healed yourself! You now have " + getHealthPoints() + " HP!");
         }
     }
+
+    @Override
+    public int addEffects(Character character) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }
