@@ -2,7 +2,7 @@ package main.java.dungeon;
 
 public class Dungeon {
 
-    static final int NUMFLOORS = 12;
+    static final int NUMFLOORS = 30;
     static final int NUMREALMS = 6;
     private State currentRealm;
     private State mudRealm;
@@ -26,7 +26,6 @@ public class Dungeon {
         this.goldRealm = new GoldRealm(this);
         this.currentRealm = mudRealm;
         this.floor = 1;
-        System.out.println("You have entered the dungeon.");
     }
 
     public void updateRealm() {

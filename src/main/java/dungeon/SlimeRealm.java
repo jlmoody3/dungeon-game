@@ -60,7 +60,7 @@ public class SlimeRealm implements State {
      * Method that calculates the total HP of the enemies.
      */
     public int calculateTotalHP(int floor) {
-        int totalHP = floor * 2 + 10;
+        int totalHP = floor * 3 + 10;
         return totalHP;
     }
 

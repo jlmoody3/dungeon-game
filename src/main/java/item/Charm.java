@@ -4,7 +4,7 @@ import main.java.character.Character;
 
 public class Charm extends PermanentItem {
 
-    static final int EFFECT_INCREASE = 5;
+    static final int EFFECT_INCREASE = 2;
 
     public Charm(Character character) {
         super(character);

@@ -62,7 +62,7 @@ public class FireRealm implements State {
      * Method that calculates the total HP of the enemies.
      */
     public int calculateTotalHP(int floor) {
-        int totalHP = floor * 3 + 10;
+        int totalHP = floor * 4 + 10;
         return totalHP;
     }
 

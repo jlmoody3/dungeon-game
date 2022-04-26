@@ -208,7 +208,33 @@ public abstract class ConcreteCharacter implements Character {
 
     public void setLevel() {
         int exp = getExpPoints();
-        if (exp >= 1050) {
+        if (exp >= 9550) {
+            level = 20;
+        } else if (exp >= 8550) {
+            level = 19;
+        } else if (exp >= 7650) {
+            level = 18;
+        } else if (exp >= 6800) {
+            level = 17;
+        } else if (exp >= 6000) {
+            level = 16;
+        } else if (exp >= 5250) {
+            level = 15;
+        } else if (exp >= 4550) {
+            level = 14;
+        } else if (exp >= 3900) {
+            level = 13;
+        } else if (exp >= 3300) {
+            level = 12;
+        } else if (exp >= 2750) {
+            level = 11;
+        } else if (exp >= 2250) {
+            level = 10;
+        } else if (exp >= 1800) {
+            level = 9;
+        } else if (exp >= 1400) {
+            level = 8;
+        } else if (exp >= 1050) {
             level = 7;
         } else if (exp >= 750) {
             level = 6;

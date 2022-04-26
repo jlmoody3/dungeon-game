@@ -88,6 +88,7 @@ public class Main {
         char1.printStats();
 
         Dungeon dungeon = new Dungeon();
+        System.out.println("You have entered the dungeon.");
         int floor = 0;
 
         while (floor <= dungeon.getNumFloors()) {
@@ -120,9 +121,9 @@ public class Main {
                     if (first) {
                         if (char1.getHealthPoints() > 0) {
                             if(char1.getTemporaryItems().size() == 0) {
-                                chance = rand.nextInt(3) + 1;
-                            } else {
                                 chance = rand.nextInt(5) + 1;
+                            } else {
+                                chance = rand.nextInt(7) + 1;
                             }
                             if (chance == 1) {
                                 char1.specialSkill();
@@ -147,7 +148,7 @@ public class Main {
                                     System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
                                 }
                                 first = false;
-                            } else if (chance <= 3) {
+                            } else if (chance <= 5) {
                                 // choose weapon
                                 Weapon weapon = newWeapon.whichWeapon(char1);
                                 if (weapon.getClass() == Sword.class) {
@@ -218,23 +219,26 @@ public class Main {
                             System.out.println("You have " + char1.getHealthPoints() + " HP left.");
                         }
                         if (potionChoice == 2) {
-                            System.out.println("It fell asleep!");
-                            turns--;
+                            if (turns == 2) {
+                                System.out.println("It fell asleep!");
+                            }
                             if (turns < 1) {
                                 System.out.println("It woke up!");
                                 potionChoice = 0;
                             }
+                            turns--;
                         }
                         if (potionChoice == 3) {
                             System.out.println("It strikes!");
                             System.out.println("It missed!");
+                            potionChoice = 0;
                         }
                         if (potionChoice == 4) {
                             System.out.println("It's paralyzed! It can't move!");
-                            turns--;
                             if (turns < 1) {
                                 potionChoice = 0;
                             }
+                            turns--;
                         }
                         if (potionChoice == 5) {
                             System.out.println("It's weakened!");
@@ -244,6 +248,7 @@ public class Main {
                             damage = char1.takeDamage(damage);
                             System.out.println("You took " + damage + " damage.");
                             System.out.println("You have " + char1.getHealthPoints() + " HP left.");
+                            potionChoice = 0;
                         }
                         first = true;
                     }
@@ -264,7 +269,7 @@ public class Main {
                     }
                 }
 
-                if (char1.getHealthPoints() > 0) {
+                if (char1.getHealthPoints() > 15) {
                     if (char1.findTreasure() && floor != dungeon.getNumFloors()) {
                         System.out.println("You found a treasure chest!");
                         PermanentItem item = new PermanentItem(char1);
@@ -274,11 +279,20 @@ public class Main {
                     floor++;
                     dungeon.setFloor(floor);
                 } else {
-                    System.out.println("You lose.");
-                    floor = dungeon.getNumFloors() + 1;
+                    break;
                 }
             }
-            if (char1.getHealthPoints() > 0) {
+            if (char1.getHealthPoints() <= 15 && floor != dungeon.getNumFloors()) {
+                floor = 0;
+                dungeon = new Dungeon();
+                char1.setHealthPoints(char1.getTotalHP());
+                System.out.println("Your health points are low. You will be sent back to floor 1.");
+            }
+            else if (char1.getHealthPoints() <= 0) {
+                System.out.println("You lose.");
+                floor = dungeon.getNumFloors() + 1;
+            }
+            else {
                 dungeon.getRealm().changeRealm(dungeon);
             }
         }

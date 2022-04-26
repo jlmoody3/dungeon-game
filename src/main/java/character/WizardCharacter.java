@@ -45,6 +45,7 @@ public class WizardCharacter extends ConcreteCharacter {
         System.out.println("Speed: " + getSpeed());
         System.out.println("Accuracy: " + getAccuracy());
         System.out.println("Luck: " + getLuck());
+        System.out.println("Critical Strike: " + getCriticalStrike());
     }
 
     public int getLowStrength() {
