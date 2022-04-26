@@ -24,7 +24,7 @@ public class ElfCharacter extends ConcreteCharacter {
 
     @Override
     public int strike(ConcreteCharacter character) {
-        return (int)(getStrength());
+        return (int) (getStrength());
     }
 
     @Override

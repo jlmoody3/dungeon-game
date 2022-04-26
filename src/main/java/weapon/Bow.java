@@ -23,9 +23,9 @@ public class Bow extends Weapon {
 
     @Override
     public int strike(ConcreteCharacter character) {
-        return (int)(character.getLevel() * STARTING_DAMAGE);
+        return (int) (character.getLevel() * STARTING_DAMAGE);
     }
-    
+
     @Override
     public String toString() {
         return "Bow";

@@ -25,7 +25,7 @@ public class Wand extends Weapon {
     public int strike(ConcreteCharacter character) {
         return character.getLevel() * STARTING_DAMAGE;
     }
-    
+
     @Override
     public String toString() {
         return "Wand";

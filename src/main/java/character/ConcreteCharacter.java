@@ -3,14 +3,8 @@ package main.java.character;
 import java.util.ArrayList;
 import java.util.Random;
 
-import main.java.item.Item;
 import main.java.item.PermanentItem;
 import main.java.item.TemporaryItem;
-import main.java.weapon.Bow;
-import main.java.weapon.Club;
-import main.java.weapon.Sceptre;
-import main.java.weapon.Sword;
-import main.java.weapon.Wand;
 import main.java.weapon.Weapon;
 
 public abstract class ConcreteCharacter implements Character {
@@ -135,7 +129,7 @@ public abstract class ConcreteCharacter implements Character {
         }
         return false;
     }
-    
+
     public void getTreasure(Weapon newWeapon, PermanentItem item, TemporaryItem potion) {
         Random random = new Random();
         int chance = random.nextInt(5);
@@ -146,9 +140,12 @@ public abstract class ConcreteCharacter implements Character {
         } else {
             potion.getItem(this, potion);
         }
-            
     }
-    
+
+    /**
+     * Method that allows characters to heal themselves by increasing HP by 20%
+     * of their total health.
+     */
     public void heal() {
         int hp;
         if (getHealthPoints() < getTotalHP()) {
@@ -161,7 +158,7 @@ public abstract class ConcreteCharacter implements Character {
             System.out.println("You healed yourself! You now have " + getHealthPoints() + " HP!");
         }
     }
-    
+
     public int getStrength() {
         return (int) strength;
     }
@@ -295,21 +292,25 @@ public abstract class ConcreteCharacter implements Character {
     public void setCriticalStrike(int criticalStrike) {
         this.criticalStrike = criticalStrike;
     }
-    
+
     public ArrayList<Weapon> getWeapons() {
         return weapons;
     }
-    
+
     public void setWeapons(Weapon weapon) {
         weapons.add(weapon);
     }
-    
+
     public ArrayList<TemporaryItem> getTemporaryItems() {
         return temporaryItems;
     }
-    
+
     public void setTemporaryItems(TemporaryItem temporaryItem) {
         temporaryItems.add(temporaryItem);
+    }
+
+    public CharacterType getCharacterType() {
+        return character;
     }
 
     /**

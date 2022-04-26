@@ -25,7 +25,7 @@ public class Club extends Weapon {
     public int strike(ConcreteCharacter character) {
         return character.getLevel() * STARTING_DAMAGE;
     }
-    
+
     @Override
     public String toString() {
         return "Club";

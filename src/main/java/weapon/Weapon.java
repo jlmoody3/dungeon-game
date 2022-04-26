@@ -1,7 +1,5 @@
 package main.java.weapon;
 
-import main.java.item.Item;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,9 +20,9 @@ public abstract class Weapon implements Character {
     }
 
     public abstract void construct();
-    
+
     public abstract int strike(ConcreteCharacter character);
-    
+
     public void getWeapon(ConcreteCharacter c) {
         Random random = new Random();
         int chance = random.nextInt(NUM_WEAPONS) + 1;
@@ -57,7 +55,7 @@ public abstract class Weapon implements Character {
         boolean hasWeapon = false;
         boolean dropWeapon = false;
         for (int i = 0; i < c.getWeapons().size(); i++) {
-            if(c.getWeapons().get(i).getClass().equals(newWeapon.getClass())) {
+            if (c.getWeapons().get(i).getClass().equals(newWeapon.getClass())) {
                 System.out.println("You already have a " + newWeapon.toString() + ".");
                 hasWeapon = true;
             } else if (newWeapon.getDamage() < c.getWeapons().get(i).getDamage()) {
@@ -72,7 +70,11 @@ public abstract class Weapon implements Character {
         }
     }
 
-    
+    /**
+     * Method that decides which weapon you will use.
+     * @param c - concrete character
+     * @return weapon that will be used
+     */
     public Weapon whichWeapon(ConcreteCharacter c) {
         ArrayList<Weapon> weapons = c.getWeapons();
         Random random = new Random();

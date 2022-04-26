@@ -1,7 +1,5 @@
 package main.java.character;
 
-import java.util.Random;
-
 public class FaerieCharacter extends ConcreteCharacter {
 
     /**

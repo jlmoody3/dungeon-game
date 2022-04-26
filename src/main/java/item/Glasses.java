@@ -13,7 +13,7 @@ public class Glasses extends PermanentItem {
     public int addEffects(Character character) {
         return character.addEffects(character) + EFFECT_INCREASE;
     }
-    
+
     public int getEffectIncrease() {
         return EFFECT_INCREASE;
     }

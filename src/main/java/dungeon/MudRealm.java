@@ -54,7 +54,6 @@ public class MudRealm implements State {
                 break;
             }
         }
-        
     }
 
     /**

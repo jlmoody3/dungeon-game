@@ -39,6 +39,5 @@ public class HumanCharacter extends ConcreteCharacter {
         int expPoints = 10 * getLevel();
         setExpPoints(getExpPoints() + expPoints);
         System.out.println("Your XP increased by " + expPoints + " points!");
-        
     }
 }

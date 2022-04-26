@@ -1,7 +1,7 @@
 package main.java.item;
 
-import main.java.character.ConcreteCharacter;
 import main.java.character.Character;
+import main.java.character.ConcreteCharacter;
 
 public abstract class Item implements Character {
 

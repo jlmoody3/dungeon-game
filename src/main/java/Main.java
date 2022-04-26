@@ -8,7 +8,6 @@ import main.java.character.CharacterType;
 import main.java.character.ConcreteCharacter;
 import main.java.dungeon.Dungeon;
 import main.java.item.HealingPotion;
-import main.java.item.Item;
 import main.java.item.ObscuringPotion;
 import main.java.item.ParalyzingPotion;
 import main.java.item.PermanentItem;
@@ -82,7 +81,7 @@ public class Main {
         default:
             break;
         }
-        
+
         char1.setWeapons(newWeapon);
 
         char1.printStats();
@@ -120,7 +119,7 @@ public class Main {
                     boolean fail = char1.strikeFail();
                     if (first) {
                         if (char1.getHealthPoints() > 0) {
-                            if(char1.getTemporaryItems().size() == 0) {
+                            if (char1.getTemporaryItems().size() == 0) {
                                 chance = rand.nextInt(5) + 1;
                             } else {
                                 chance = rand.nextInt(7) + 1;
@@ -169,7 +168,7 @@ public class Main {
                                 }
                                 damageToEnemy = newWeapon.strike(char1);
                                 if (!fail) {
-                                    if(char1.criticalStrike()) {
+                                    if (char1.criticalStrike()) {
                                         damageToEnemy = damageToEnemy + newWeapon.strike(char1);
                                         System.out.println("Critical strike!");
                                     }
@@ -287,12 +286,10 @@ public class Main {
                 dungeon = new Dungeon();
                 char1.setHealthPoints(char1.getTotalHP());
                 System.out.println("Your health points are low. You will be sent back to floor 1.");
-            }
-            else if (char1.getHealthPoints() <= 0) {
+            } else if (char1.getHealthPoints() <= 0) {
                 System.out.println("You lose.");
                 floor = dungeon.getNumFloors() + 1;
-            }
-            else {
+            } else {
                 dungeon.getRealm().changeRealm(dungeon);
             }
         }

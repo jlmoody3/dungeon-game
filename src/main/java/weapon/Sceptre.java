@@ -9,7 +9,11 @@ public class Sceptre extends Weapon {
     static final int STARTING_DAMAGE = 15;
     static final int LOW_STRENGTH = 5;
     static final int HIGH_STRENGTH = 20;
-    
+
+    /**
+     * Constructor for Sceptre class. Sets starting damage.
+     * @param character
+     */
     public Sceptre(Character character) {
         super(character);
         this.setDamage(STARTING_DAMAGE);
@@ -17,8 +21,7 @@ public class Sceptre extends Weapon {
 
     @Override
     public void construct() {
-        // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -26,7 +29,7 @@ public class Sceptre extends Weapon {
         Random random = new Random();
         return random.nextInt(character.getLevel() * HIGH_STRENGTH) + character.getLevel() * LOW_STRENGTH;
     }
-    
+
     @Override
     public String toString() {
         return "Sceptre";

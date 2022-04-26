@@ -33,7 +33,6 @@ public class WizardCharacter extends ConcreteCharacter {
     @Override
     public int strike(ConcreteCharacter character) {
         Random random = new Random();
-        
         return random.nextInt(getLevel() * HIGH_STRENGTH) + getLevel() * LOW_STRENGTH;
     }
 
@@ -70,6 +69,5 @@ public class WizardCharacter extends ConcreteCharacter {
         PermanentItem item = new PermanentItem(this);
         TemporaryItem potion = new TemporaryItem(this);
         getTreasure(weapon, item, potion);
-        
     }
 }

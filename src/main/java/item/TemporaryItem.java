@@ -4,22 +4,16 @@ import java.util.Random;
 
 import main.java.character.Character;
 import main.java.character.ConcreteCharacter;
-import main.java.weapon.Bow;
-import main.java.weapon.Club;
-import main.java.weapon.Sceptre;
-import main.java.weapon.Sword;
-import main.java.weapon.Wand;
-import main.java.weapon.Weapon;
 
 public class TemporaryItem extends Item {
 
     static final int NUM_ITEMS = 5;
     private Character character;
-    
+
     public TemporaryItem(Character character) {
         this.character = character;
     }
-    
+
     @Override
     public void construct() {
 
@@ -65,6 +59,10 @@ public class TemporaryItem extends Item {
     @Override
     public int addEffects(Character character) {
         return 0;
+    }
+
+    public Character getCharacter() {
+        return character;
     }
 
 }
