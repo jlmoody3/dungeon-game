@@ -1,6 +1,10 @@
 package main.java.character;
 
-public class OrcCharacter extends ConcreteCharacter{
+public class OrcCharacter extends ConcreteCharacter {
+
+    /**
+     * Constructor for OrcCharacter class. Sets initial stats.
+     */
     public OrcCharacter() {
         super(CharacterType.ORC);
         this.setInitialStrength(15);
@@ -10,10 +14,10 @@ public class OrcCharacter extends ConcreteCharacter{
         this.setAccuracy(35);
         this.setLuck(10);
         this.setHealthPoints(100);
-        
+
         construct();
     }
-    
+
     public void construct() {
         System.out.println("Congratulations! You are an orc.");
     }

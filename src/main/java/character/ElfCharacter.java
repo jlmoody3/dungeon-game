@@ -1,6 +1,10 @@
 package main.java.character;
 
 public class ElfCharacter extends ConcreteCharacter {
+
+    /**
+     * Constructor for ElfCharacter class. Sets initial stats.
+     */
     public ElfCharacter() {
         super(CharacterType.ELF);
         this.setInitialStrength(7.5);
@@ -10,10 +14,10 @@ public class ElfCharacter extends ConcreteCharacter {
         this.setAccuracy(30);
         this.setLuck(7);
         this.setHealthPoints(100);
-    
+
         construct();
     }
-    
+
     public void construct() {
         System.out.println("Congratulations! You are an elf.");
     }

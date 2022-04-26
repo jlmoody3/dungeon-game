@@ -1,34 +1,39 @@
 package main.java.character;
 
 public class CharacterFactory {
+
+    /**
+     * Method that builds the characters
+     * @param character
+     * @return built character
+     */
     public static ConcreteCharacter buildCharacter(CharacterType character) {
         ConcreteCharacter char1 = null;
-                
+
         switch (character) {
         case ELF:
-          char1 = new ElfCharacter();
-          break;
-     
+            char1 = new ElfCharacter();
+            break;
+
         case ORC:
             char1 = new OrcCharacter();
-          break;
-          
+            break;
+
         case HUMAN:
             char1 = new HumanCharacter();
-          break;
-          
+            break;
+
         case WIZARD:
             char1 = new WizardCharacter();
-          break;
-        
+            break;
+
         case FAERIE:
             char1 = new FaerieCharacter();
-          break;
-     
+            break;
+
         default:
-          
-          break;
+            break;
         }
         return char1;
-      }
+    }
 }

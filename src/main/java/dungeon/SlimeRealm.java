@@ -2,19 +2,18 @@ package main.java.dungeon;
 
 import java.util.Random;
 
-public class SlimeRealm implements State{
+public class SlimeRealm implements State {
 
-    Dungeon dungeon;
-    int enemyHP;
-    
+    private Dungeon dungeon;
+    private int enemyhp;
+
     public SlimeRealm(Dungeon dungeon) {
         this.dungeon = dungeon;
     }
-    
+
     @Override
     public void changeRealm(Dungeon dungeon) {
         dungeon.setRealm(dungeon.getIceRealm());
-        
     }
 
     @Override
@@ -22,8 +21,7 @@ public class SlimeRealm implements State{
         Random random = new Random();
         if (floor % 10 == 0) {
             return random.nextInt(10) + floor;
-        }
-        else {
+        } else {
             return random.nextInt(5) + floor;
         }
     }
@@ -38,7 +36,7 @@ public class SlimeRealm implements State{
         Random random = new Random();
         int enemy = 0;
         enemy = random.nextInt(3) + 1;
-        
+
         switch(enemy) {
         case 1:
             System.out.println("A slime blob appeared!");
@@ -49,25 +47,36 @@ public class SlimeRealm implements State{
         case 3:
             System.out.println("A slime rat appeared!");
             break;
+        default:
+            break;
         }
-        
     }
-    
+
+    /**
+     * Method that calculates the total HP of the enemies.
+     */
     public int calculateTotalHP(int floor) {
         int totalHP = floor * 2 + 10;
         return totalHP;
     }
-    
+
     public void setEnemyHP(int hp) {
         if (hp <= 0) {
-            enemyHP = 0;
-        }
-        else {
-            enemyHP = hp;
+            enemyhp = 0;
+        } else {
+            enemyhp = hp;
         }
     }
-    
+
     public int getEnemyHP() {
-        return enemyHP;
+        return enemyhp;
+    }
+
+    public void setDungeon(Dungeon dungeon) {
+        this.dungeon = dungeon;
+    }
+
+    public Dungeon getDungeon() {
+        return dungeon;
     }
 }

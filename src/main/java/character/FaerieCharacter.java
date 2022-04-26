@@ -3,6 +3,10 @@ package main.java.character;
 import java.util.Random;
 
 public class FaerieCharacter extends ConcreteCharacter {
+
+    /**
+     * Constructor for FaerieCharacter class. Sets initial stats.
+     */
     public FaerieCharacter() {
         super(CharacterType.FAERIE);
         this.setInitialStrength(5);
@@ -12,10 +16,10 @@ public class FaerieCharacter extends ConcreteCharacter {
         this.setAccuracy(25);
         this.setLuck(13);
         this.setHealthPoints(100);
-        
+
         construct();
     }
-    
+
     public void construct() {
         System.out.println("Congratulations! You are a faerie.");
     }
@@ -31,15 +35,13 @@ public class FaerieCharacter extends ConcreteCharacter {
         int chance = random.nextInt(5);
         int hp;
         if (chance == 1 && getHealthPoints() < getTotalHP()) {
-            hp = getHealthPoints() + (int)(getTotalHP() * 0.2);
+            hp = getHealthPoints() + (int) (getTotalHP() * 0.2);
             if (hp < getTotalHP()) {
                 setHealthPoints(hp);
-            }
-            else {
+            } else {
                 setHealthPoints(getTotalHP());
             }
             System.out.println("You healed yourself! You now have " + getHealthPoints() + " HP!");
         }
     }
-
 }

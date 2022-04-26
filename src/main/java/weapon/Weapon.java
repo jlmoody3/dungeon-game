@@ -11,11 +11,15 @@ import main.java.character.ConcreteCharacter;
 public abstract class Weapon implements Character, Item {
     private Character character;
     private int damage;
-    
+
+    /**
+     * Constructor for the Weapon class.
+     * @param character
+     */
     public Weapon(Character character) {
         this.character = character;
     }
-    
+
     public abstract void construct();
     
     public abstract int strike(ConcreteCharacter character);
@@ -85,19 +89,19 @@ public abstract class Weapon implements Character, Item {
         }
         return weapons.get(0);
     }
-    
+
     public void setDamage(int damage) {
         this.damage = damage;
     }
-    
+
     public int getDamage() {
         return damage;
     }
-    
+
     public void setCharacter(Character character) {
         this.character = character;
     }
-    
+
     public Character getCharacter() {
         return character;
     }

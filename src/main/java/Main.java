@@ -15,7 +15,7 @@ import main.java.weapon.Weapon;
 
 /**
  * Main class for Dungeon Warrior
- * @author jessm
+ * @author Jessica Moody
  * @version 1.0
  */
 public class Main {
@@ -26,12 +26,12 @@ public class Main {
      */
     public static void main(String[] args) {
         System.out.println("Welcome to Dungeon Warrior!");
-        
+
         Random random = new Random();
         int characterSelection = random.nextInt(5) + 1;
         //int characterSelection = 5;
         ConcreteCharacter char1 = null;
-        
+
         switch(characterSelection) {
         case 1:
             char1 = CharacterFactory.buildCharacter(CharacterType.ORC);
@@ -48,10 +48,12 @@ public class Main {
         case 5:
             char1 = CharacterFactory.buildCharacter(CharacterType.FAERIE);
             break;
+        default:
+            break;
         }
-        
+
         Weapon newWeapon = null;
-        
+
         switch(characterSelection) {
         case 1:
             newWeapon = new Club(char1);
@@ -68,21 +70,24 @@ public class Main {
         case 5:
             newWeapon = new Wand(char1);
             break;
+        default:
+            break;
         }
         
         char1.setWeapons(newWeapon);
 
         char1.printStats();
-        
+
         Dungeon dungeon = new Dungeon();
         int floor = 0;
-        
-        while(floor <= dungeon.getNumFloors()) {
+
+        while (floor <= dungeon.getNumFloors()) {
             floor = dungeon.getFloor();
             System.out.println("You have entered the " + dungeon.getRealm().toString() + ".");
-            
-            for (int i = 0; i < dungeon.getNumFloors()/dungeon.getNumRealms() && floor <= dungeon.getNumFloors(); i++) {
-                System.out.println("You are on floor " + floor +".");
+
+            for (int i = 0; i < dungeon.getNumFloors() / dungeon.getNumRealms()
+                    && floor <= dungeon.getNumFloors(); i++) {
+                System.out.println("You are on floor " + floor + ".");
                 System.out.println("You have " + char1.getHealthPoints() + " HP.");
                 System.out.println("You have " + char1.getExpPoints() + " XP.");
                 // set enemy health points
@@ -90,10 +95,10 @@ public class Main {
                 dungeon.getRealm().chooseEnemy();
                 dungeon.getRealm().setEnemyHP(totalEnemyHP);
                 System.out.println("It has " + totalEnemyHP + " HP.");
-                
+
                 // battle sequence
                 boolean first = char1.strikeFirst();
-                while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) { 
+                while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) {
                     boolean fail = char1.strikeFail();
                     if (first) {
                         if (char1.getHealthPoints() > 0) {
@@ -123,29 +128,27 @@ public class Main {
                                     System.out.println("Critical strike!");
                                 }
                                 dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
-                                System.out.println("You dealt " + damageToEnemy + " damage.");          
+                                System.out.println("You dealt " + damageToEnemy + " damage.");
                                 System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
-                                
-                            }
-                            else {
+                            } else {
                                 System.out.println("You missed!");
                             }
                             first = false;
                         }
-                    }
-                    else {
+                    } else {
                         System.out.println("It strikes!");
                         int damage = dungeon.getRealm().calculateDamage(floor);
                         System.out.println("It dealt " + damage + " damage.");
                         damage = char1.takeDamage(damage);
-                        System.out.println("You took " + damage + " damage.");          
+                        System.out.println("You took " + damage + " damage.");
                         System.out.println("You have " + char1.getHealthPoints() + " HP left.");
                         first = true;
                     }
                 }
-                
-                if(dungeon.getRealm().getEnemyHP() <= 0 && floor != dungeon.getNumFloors()) {
-                    int level1, level2;
+
+                if (dungeon.getRealm().getEnemyHP() <= 0 && floor != dungeon.getNumFloors()) {
+                    int level1;
+                    int level2;
                     level1 = char1.getLevel();
                     char1.setExpPoints(char1.getExpPoints() + totalEnemyHP);
                     level2 = char1.getLevel();
@@ -157,16 +160,15 @@ public class Main {
                         char1.printStats();
                     }
                 }
-                
+
                 if (char1.getHealthPoints() > 0) {
-                    if(char1.findTreasure() && floor != dungeon.getNumFloors()) {
+                    if (char1.findTreasure() && floor != dungeon.getNumFloors()) {
                         System.out.println("You found a treasure chest!");
                         char1.getTreasure();
                     }
                     floor++;
                     dungeon.setFloor(floor);
-                }
-                else {
+                } else {
                     System.out.println("You lose.");
                     floor = dungeon.getNumFloors() + 1;
                 }
@@ -174,6 +176,6 @@ public class Main {
             if (char1.getHealthPoints() > 0) {
                 dungeon.getRealm().changeRealm(dungeon);
             }
-        } 
+        }
     }
 }
