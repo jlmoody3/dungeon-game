@@ -33,7 +33,7 @@ public abstract class ConcreteCharacter implements Character {
 
     private ArrayList<Weapon> weapons;
     //private ArrayList<PermanentItem> permanentItems;
-    //private ArrayList<TemporaryItem> temporaryItems;
+    private ArrayList<TemporaryItem> temporaryItems;
 
     private CharacterType character = null;
 
@@ -48,6 +48,7 @@ public abstract class ConcreteCharacter implements Character {
         totalHP = 100;
         criticalStrike = 5;
         weapons = new ArrayList<Weapon>();
+        temporaryItems = new ArrayList<TemporaryItem>();
     }
 
     public abstract void construct();
@@ -149,6 +150,19 @@ public abstract class ConcreteCharacter implements Character {
             potion.getItem(this, potion);
         }
             
+    }
+    
+    public void heal() {
+        int hp;
+        if (getHealthPoints() < getTotalHP()) {
+            hp = getHealthPoints() + (int) (getTotalHP() * 0.2);
+            if (hp < getTotalHP()) {
+                setHealthPoints(hp);
+            } else {
+                setHealthPoints(getTotalHP());
+            }
+            System.out.println("You healed yourself! You now have " + getHealthPoints() + " HP!");
+        }
     }
     
     public int getStrength() {
@@ -265,6 +279,14 @@ public abstract class ConcreteCharacter implements Character {
     
     public void setWeapons(Weapon weapon) {
         weapons.add(weapon);
+    }
+    
+    public ArrayList<TemporaryItem> getTemporaryItems() {
+        return temporaryItems;
+    }
+    
+    public void setTemporaryItems(TemporaryItem temporaryItem) {
+        temporaryItems.add(temporaryItem);
     }
 
     /**

@@ -3,7 +3,7 @@ package main.java.character;
 public class CharacterFactory {
 
     /**
-     * Method that builds the characters
+     * Method that builds the characters. Implements Factory pattern.
      * @param character
      * @return built character
      */

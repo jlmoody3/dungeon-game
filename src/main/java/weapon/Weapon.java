@@ -9,6 +9,7 @@ import main.java.character.Character;
 import main.java.character.ConcreteCharacter;
 
 public abstract class Weapon implements Character {
+    static final int NUM_WEAPONS = 5;
     private Character character;
     private int damage;
 
@@ -26,7 +27,7 @@ public abstract class Weapon implements Character {
     
     public void getWeapon(ConcreteCharacter c) {
         Random random = new Random();
-        int chance = random.nextInt(5) + 1;
+        int chance = random.nextInt(NUM_WEAPONS) + 1;
         Weapon newWeapon = null;
 
         switch(chance) {

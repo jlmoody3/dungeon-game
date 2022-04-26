@@ -31,18 +31,7 @@ public class FaerieCharacter extends ConcreteCharacter {
 
     @Override
     public void specialSkill() {
-        Random random = new Random();
-        int chance = random.nextInt(5);
-        int hp;
-        if (chance == 1 && getHealthPoints() < getTotalHP()) {
-            hp = getHealthPoints() + (int) (getTotalHP() * 0.2);
-            if (hp < getTotalHP()) {
-                setHealthPoints(hp);
-            } else {
-                setHealthPoints(getTotalHP());
-            }
-            System.out.println("You healed yourself! You now have " + getHealthPoints() + " HP!");
-        }
+        heal();
     }
 
     @Override

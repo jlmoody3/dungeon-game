@@ -1,14 +1,20 @@
 package main.java;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import main.java.character.CharacterFactory;
 import main.java.character.CharacterType;
 import main.java.character.ConcreteCharacter;
 import main.java.dungeon.Dungeon;
+import main.java.item.HealingPotion;
 import main.java.item.Item;
+import main.java.item.ObscuringPotion;
+import main.java.item.ParalyzingPotion;
 import main.java.item.PermanentItem;
+import main.java.item.SleepingPotion;
 import main.java.item.TemporaryItem;
+import main.java.item.WeakeningPotion;
 import main.java.weapon.Bow;
 import main.java.weapon.Club;
 import main.java.weapon.Sceptre;
@@ -100,51 +106,124 @@ public class Main {
                 System.out.println("It has " + totalEnemyHP + " HP.");
 
                 // battle sequence
+                Random rand = new Random();
+                int chance = 0;
+                int turns = 0;
+                ArrayList<TemporaryItem> tempItems;
+                int potionChoice = 0;
+                // choose who strikes first
                 boolean first = char1.strikeFirst();
                 while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) {
+                    // check to see if you will miss
                     boolean fail = char1.strikeFail();
                     if (first) {
                         if (char1.getHealthPoints() > 0) {
-                            char1.specialSkill();
-                            Weapon weapon = newWeapon.whichWeapon(char1);
-                            if (weapon.getClass() == Sword.class) {
-                                newWeapon = new Sword(newWeapon);
-                                System.out.println("You swing your sword!");
-                            } else if (weapon.getClass() == Bow.class) {
-                                newWeapon = new Bow(newWeapon);
-                                System.out.println("You fire your bow!");
-                            } else if (weapon.getClass() == Club.class) {
-                                newWeapon = new Club(newWeapon);
-                                System.out.println("You swing your club!");
-                            } else if (weapon.getClass() == Wand.class) {
-                                newWeapon = new Wand(newWeapon);
-                                System.out.println("You wave your wand!");
-                            } else if (weapon.getClass() == Sceptre.class) {
-                                newWeapon = new Sceptre(newWeapon);
-                                System.out.println("You use your sceptre!");
-                            }
-                            int damageToEnemy = newWeapon.strike(char1);
-                            //System.out.println("You strike!");
-                            if (!fail) {
-                                if(char1.criticalStrike()) {
-                                    damageToEnemy = damageToEnemy + newWeapon.strike(char1);
-                                    System.out.println("Critical strike!");
-                                }
-                                dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
-                                System.out.println("You dealt " + damageToEnemy + " damage.");
-                                System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                            if(char1.getTemporaryItems().size() == 0) {
+                                chance = rand.nextInt(3) + 1;
                             } else {
-                                System.out.println("You missed!");
+                                chance = rand.nextInt(5) + 1;
+                            }
+                            if (chance == 1) {
+                                char1.specialSkill();
+                                first = false;
+                            } else if (chance <= 3) {
+                                // choose weapon
+                                Weapon weapon = newWeapon.whichWeapon(char1);
+                                if (weapon.getClass() == Sword.class) {
+                                    newWeapon = new Sword(newWeapon);
+                                    System.out.println("You swing your sword!");
+                                } else if (weapon.getClass() == Bow.class) {
+                                    newWeapon = new Bow(newWeapon);
+                                    System.out.println("You fire your bow!");
+                                } else if (weapon.getClass() == Club.class) {
+                                    newWeapon = new Club(newWeapon);
+                                    System.out.println("You swing your club!");
+                                } else if (weapon.getClass() == Wand.class) {
+                                    newWeapon = new Wand(newWeapon);
+                                    System.out.println("You wave your wand!");
+                                } else if (weapon.getClass() == Sceptre.class) {
+                                    newWeapon = new Sceptre(newWeapon);
+                                    System.out.println("You use your sceptre!");
+                                }
+                                int damageToEnemy = newWeapon.strike(char1);
+                                if (!fail) {
+                                    if(char1.criticalStrike()) {
+                                        damageToEnemy = damageToEnemy + newWeapon.strike(char1);
+                                        System.out.println("Critical strike!");
+                                    }
+                                    dungeon.getRealm().setEnemyHP(dungeon.getRealm().getEnemyHP() - damageToEnemy);
+                                    System.out.println("You dealt " + damageToEnemy + " damage.");
+                                    System.out.println("It has " + dungeon.getRealm().getEnemyHP() + " HP left.");
+                                } else {
+                                    System.out.println("You missed!");
+                                }
+                                first = false;
+                            } else {
+                                tempItems = char1.getTemporaryItems();
+                                if (tempItems.get(0).getClass() == HealingPotion.class) {
+                                    potionChoice = 1;
+                                    System.out.println("You use your Healing Potion!");
+                                    if (char1.getHealthPoints() == char1.getTotalHP()) {
+                                        System.out.println("You're already at full health!");
+                                    } else {
+                                        char1.heal();
+                                    }
+                                } else if (tempItems.get(0).getClass() == SleepingPotion.class) {
+                                    potionChoice = 2;
+                                    System.out.println("You use your Sleeping Potion!");
+                                    turns = 1;
+                                } else if (tempItems.get(0).getClass() == ObscuringPotion.class) {
+                                    potionChoice = 3;
+                                    System.out.println("You use your Obscuring Potion!");
+                                } else if (tempItems.get(0).getClass() == ParalyzingPotion.class) {
+                                    potionChoice = 4;
+                                    System.out.println("You use your Paralyzing Potion!");
+                                    turns = 3;
+                                } else if (tempItems.get(0).getClass() == WeakeningPotion.class) {
+                                    potionChoice = 5;
+                                    System.out.println("You use your Weakening Potion!");
+                                }
+                                tempItems.remove(0);
                             }
                             first = false;
                         }
                     } else {
-                        System.out.println("It strikes!");
-                        int damage = dungeon.getRealm().calculateDamage(floor);
-                        System.out.println("It dealt " + damage + " damage.");
-                        damage = char1.takeDamage(damage);
-                        System.out.println("You took " + damage + " damage.");
-                        System.out.println("You have " + char1.getHealthPoints() + " HP left.");
+                        if (potionChoice <= 1) {
+                            System.out.println("It strikes!");
+                            int damage = dungeon.getRealm().calculateDamage(floor);
+                            System.out.println("It dealt " + damage + " damage.");
+                            damage = char1.takeDamage(damage);
+                            System.out.println("You took " + damage + " damage.");
+                            System.out.println("You have " + char1.getHealthPoints() + " HP left.");
+                        }
+                        if (potionChoice == 2) {
+                            System.out.println("It fell asleep!");
+                            turns--;
+                            if (turns < 1) {
+                                System.out.println("It woke up!");
+                                potionChoice = 0;
+                            }
+                        }
+                        if (potionChoice == 3) {
+                            System.out.println("It strikes!");
+                            System.out.println("It missed!");
+                        }
+                        if (potionChoice == 4) {
+                            System.out.println("It's paralyzed! It can't move!");
+                            turns--;
+                            if (turns < 1) {
+                                potionChoice = 0;
+                            }
+                        }
+                        if (potionChoice == 5) {
+                            System.out.println("It's weakened!");
+                            System.out.println("It strikes!");
+                            int damage = dungeon.getRealm().calculateDamage(floor) / 2;
+                            System.out.println("It dealt " + damage + " damage.");
+                            damage = char1.takeDamage(damage);
+                            System.out.println("You took " + damage + " damage.");
+                            System.out.println("You have " + char1.getHealthPoints() + " HP left.");
+                        }
                         first = true;
                     }
                 }

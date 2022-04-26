@@ -23,7 +23,7 @@ public class Sword extends Weapon {
 
     @Override
     public int strike(ConcreteCharacter character) {
-        return character.getLevel() * STARTING_DAMAGE;
+        return character.getStrength();
     }
     
     @Override

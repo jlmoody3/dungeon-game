@@ -15,6 +15,7 @@ public class Dungeon {
 
     /**
      * Constructor for Dungeon class. Initializes all the realms.
+     * Implements State pattern.
      */
     public Dungeon() {
         this.mudRealm = new MudRealm(this);
