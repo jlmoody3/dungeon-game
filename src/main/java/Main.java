@@ -176,7 +176,7 @@ public class Main {
                                 // Fulfills requirement that attacks should have a chance to fail/miss.
                                 if (!fail) {
                                     int chance3 = char1.findRandom(char1.getMaxCriticalStrike());
-                                    // Fulfills requirement that attacks should have a chance to 
+                                    // Fulfills requirement that attacks should have a chance to
                                     // critically strike.
                                     if (char1.criticalStrike(chance3)) {
                                         damageToEnemy = damageToEnemy + newWeapon.strike(char1);

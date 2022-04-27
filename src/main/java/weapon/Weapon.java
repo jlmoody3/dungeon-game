@@ -150,7 +150,7 @@ public abstract class Weapon implements Character {
     public Character getCharacter() {
         return character;
     }
-    
+
     public int getNumWeapons() {
         return NUM_WEAPONS;
     }

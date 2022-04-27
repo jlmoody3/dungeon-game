@@ -1,7 +1,5 @@
 package main.java.item;
 
-import java.util.Random;
-
 import main.java.character.Character;
 import main.java.character.ConcreteCharacter;
 
