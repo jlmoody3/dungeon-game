@@ -1,5 +1,11 @@
 package main.java.dungeon;
 
+/**
+ * Dungeon class. Context class for State Design Pattern.
+ * Fulfills requirement that the game should run in cycles.
+ * @author Jessica Moody
+ *
+ */
 public class Dungeon {
 
     static final int NUMFLOORS = 30;

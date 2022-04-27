@@ -16,6 +16,10 @@ public class SlimeRealm implements State {
         dungeon.setRealm(dungeon.getIceRealm());
     }
 
+    /**
+     * Method that calculates the damage inflicted by enemies.
+     * Fulfills requirement that enemies get harder with each level.
+     */
     @Override
     public int calculateDamage(int floor) {
         Random random = new Random();
@@ -31,8 +35,12 @@ public class SlimeRealm implements State {
         return "Slime Realm";
     }
 
+    /**
+     * Method that chooses which enemy will fight.
+     */
     @Override
     public String chooseEnemy(int enemy) {
+        // Appears on 15th floor
         if (dungeon.getFloor() % 5 == 0) {
             return ("The Slime King appeared!");
         } else {
@@ -51,6 +59,7 @@ public class SlimeRealm implements State {
 
     /**
      * Method that calculates the total HP of the enemies.
+     * Fulfills requirement that enemies get harder with each level.
      */
     public int calculateTotalHP(int floor) {
         int totalHP = floor * 3 + 10;

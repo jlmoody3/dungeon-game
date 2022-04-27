@@ -16,6 +16,10 @@ public class FireRealm implements State {
         dungeon.setRealm(dungeon.getGoldRealm());
     }
 
+    /**
+     * Method that calculates the damage inflicted by enemies.
+     * Fulfills requirement that enemies get harder with each level.
+     */
     @Override
     public int calculateDamage(int floor) {
         Random random = new Random();
@@ -33,8 +37,12 @@ public class FireRealm implements State {
         return "Fire Realm";
     }
 
+    /**
+     * Method that chooses which enemy will fight.
+     */
     @Override
     public String chooseEnemy(int enemy) {
+        // Appears on 25th floor
         if (dungeon.getFloor() % 5 == 0) {
             return ("The Hellhound appeared!");
         } else {
@@ -53,6 +61,7 @@ public class FireRealm implements State {
 
     /**
      * Method that calculates the total HP of the enemies.
+     * Fulfills requirement that enemies get harder with each level.
      */
     public int calculateTotalHP(int floor) {
         int totalHP = floor * 4 + 10;

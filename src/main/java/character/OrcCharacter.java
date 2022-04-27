@@ -35,6 +35,6 @@ public class OrcCharacter extends ConcreteCharacter {
 
     @Override
     public void specialSkill() {
-
+        // see main
     }
 }

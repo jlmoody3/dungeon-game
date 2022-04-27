@@ -37,9 +37,9 @@ public class Main {
 
         Random random = new Random();
         int characterSelection = random.nextInt(5) + 1;
-        //int characterSelection = 5;
         ConcreteCharacter char1 = null;
 
+        // Fulfills choose character type
         switch(characterSelection) {
         case 1:
             char1 = CharacterFactory.buildCharacter(CharacterType.ORC);
@@ -130,6 +130,7 @@ public class Main {
                                 chance = rand.nextInt(7) + 1;
                             }
                             if (chance == 1) {
+                                // Fulfills requirement special skill
                                 char1.specialSkill();
                                 if (characterSelection == 2) {
                                     System.out.println("You used swift!");
@@ -172,8 +173,11 @@ public class Main {
                                     System.out.println("You use your sceptre!");
                                 }
                                 damageToEnemy = newWeapon.strike(char1);
+                                // Fulfills requirement that attacks should have a chance to fail/miss.
                                 if (!fail) {
                                     int chance3 = char1.findRandom(char1.getMaxCriticalStrike());
+                                    // Fulfills requirement that attacks should have a chance to 
+                                    // critically strike.
                                     if (char1.criticalStrike(chance3)) {
                                         damageToEnemy = damageToEnemy + newWeapon.strike(char1);
                                         System.out.println("Critical strike!");
@@ -190,6 +194,8 @@ public class Main {
                                 if (tempItems.get(0).getClass() == HealingPotion.class) {
                                     potionChoice = 1;
                                     System.out.println("You use your Healing Potion!");
+                                    // Fulfills requirement that potions should never give more health
+                                    // than you have as a maximum.
                                     if (char1.getHealthPoints() == char1.getTotalHP()) {
                                         System.out.println("You're already at full health!");
                                     } else {
@@ -273,8 +279,9 @@ public class Main {
                         char1.printStats();
                     }
                 }
-
-                if (char1.getHealthPoints() > 15) {
+                // Finding the treasure chest. Fulfills requirement that after each battle you should
+                // have a small chance to find a chest that contains items.
+                if (char1.getHealthPoints() > (char1.getTotalHP() * 0.15)) {
                     int chance4 = char1.findRandom(char1.getMaxLuck());
                     if (char1.findTreasure(chance4) && floor != dungeon.getNumFloors()) {
                         System.out.println("You found a treasure chest!");
@@ -289,7 +296,8 @@ public class Main {
                     break;
                 }
             }
-            if (char1.getHealthPoints() <= 15 && floor != dungeon.getNumFloors()) {
+            // Fulfills requirement that you go back to top floor if health is below 15%.
+            if (char1.getHealthPoints() < (char1.getTotalHP() * 0.15) && floor != dungeon.getNumFloors()) {
                 floor = 0;
                 dungeon = new Dungeon();
                 char1.setHealthPoints(char1.getTotalHP());

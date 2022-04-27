@@ -34,7 +34,7 @@ public class ElfCharacter extends ConcreteCharacter {
 
     @Override
     public void specialSkill() {
-
+        // see main
     }
 
 

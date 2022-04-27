@@ -24,6 +24,11 @@ public class TemporaryItem extends Item {
         return 0;
     }
 
+    /**
+     * Method that chooses which temporary item you will find in the treasure chest.
+     * Fulfills requirement that simulation must include at least 3 temporary
+     * status effects.
+     */
     @Override
     public void getItem(int chance, ConcreteCharacter character, Item item) {
         switch(chance) {

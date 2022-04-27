@@ -16,6 +16,10 @@ public class MudRealm implements State {
         dungeon.setRealm(dungeon.getCandyRealm());
     }
 
+    /**
+     * Method that calculates the damage inflicted by enemies.
+     * Fulfills requirement that enemies get harder with each level.
+     */
     @Override
     public int calculateDamage(int floor) {
         Random random = new Random();
@@ -31,8 +35,12 @@ public class MudRealm implements State {
         return "Mud Realm";
     }
 
+    /**
+     * Method that chooses which enemy will fight.
+     */
     @Override
     public String chooseEnemy(int enemy) {
+        // Appears on 5th floor
         if (dungeon.getFloor() % 5 == 0) {
             return ("The Mega Blob appeared!");
         } else {
@@ -51,6 +59,7 @@ public class MudRealm implements State {
 
     /**
      * Method that calculates the total HP of the enemies.
+     * Fulfills requirement that enemies get harder with each level.
      */
     public int calculateTotalHP(int floor) {
         int totalHP = floor * 2 + 10;

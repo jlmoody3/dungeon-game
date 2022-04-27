@@ -20,6 +20,12 @@ public class PermanentItem extends Item {
         this.character = character;
     }
 
+    /**
+     * Method that chooses which permanent item you will find in the treasure chest.
+     * Fulfills requirement that character should be able to equip items. Also
+     * fulfills requirement that simulation must include at least 1 permanent
+     * staus effect.
+     */
     public void getItem(int chance, ConcreteCharacter character, Item item) {
         switch (chance) {
         case 0:

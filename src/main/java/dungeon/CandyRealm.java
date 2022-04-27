@@ -16,6 +16,10 @@ public class CandyRealm implements State {
         dungeon.setRealm(dungeon.getSlimeRealm());
     }
 
+    /**
+     * Method that calculates the damage inflicted by enemies.
+     * Fulfills requirement that enemies get harder with each level.
+     */
     @Override
     public int calculateDamage(int floor) {
         Random random = new Random();
@@ -31,8 +35,12 @@ public class CandyRealm implements State {
         return "Candy Realm";
     }
 
+    /**
+     * Method that chooses which enemy will fight.
+     */
     @Override
     public String chooseEnemy(int enemy) {
+        // Appears on 10th floor
         if (dungeon.getFloor() % 5 == 0) {
             return ("The Psychic Gobstopper appeared!");
         } else {
@@ -51,6 +59,7 @@ public class CandyRealm implements State {
 
     /**
      * Method that calculates the total HP of the enemies.
+     * Fulfills requirement that enemies get harder with each level.
      */
     public int calculateTotalHP(int floor) {
         int totalHP = floor * 2 + 10;

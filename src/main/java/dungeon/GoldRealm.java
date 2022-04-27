@@ -16,6 +16,10 @@ public class GoldRealm implements State {
         System.out.println("You win!");
     }
 
+    /**
+     * Method that calculates the damage inflicted by enemies.
+     * Fulfills requirement that enemies get harder with each level.
+     */
     @Override
     public int calculateDamage(int floor) {
         Random random = new Random();
@@ -33,8 +37,12 @@ public class GoldRealm implements State {
         return "Gold Realm";
     }
 
+    /**
+     * Method that chooses which enemy will fight.
+     */
     @Override
     public String chooseEnemy(int enemy) {
+        // Appears on 30th floor
         if (dungeon.getFloor() % 5 == 0) {
             return ("The Golden Gorgon appeared!");
         } else {
@@ -53,6 +61,7 @@ public class GoldRealm implements State {
 
     /**
      * Method that calculates the total HP of the enemies.
+     * Fulfills requirement that enemies get harder with each level.
      */
     public int calculateTotalHP(int floor) {
         int totalHP = floor * 5 + 10;

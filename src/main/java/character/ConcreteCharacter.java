@@ -7,12 +7,18 @@ import main.java.item.PermanentItem;
 import main.java.item.TemporaryItem;
 import main.java.weapon.Weapon;
 
+/**
+ * ConcreteCharacter class. Concrete class for Factory Design Pattern.
+ * @author jessm
+ *
+ */
 public abstract class ConcreteCharacter implements Character {
     static final int MAX_ACCURACY = 50;
     static final int MAX_SPEED = 50;
     static final int MAX_LUCK = 100;
     static final int MAX_CRITICAL_STRIKE = 100;
 
+    // Fulfills requirement that character should have stats.
     private double strength;
     private int defense;
     private int speed;
