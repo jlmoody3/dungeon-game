@@ -32,26 +32,19 @@ public class SlimeRealm implements State {
     }
 
     @Override
-    public void chooseEnemy() {
+    public String chooseEnemy(int enemy) {
         if (dungeon.getFloor() % 5 == 0) {
-            System.out.println("The Slime King appeared!");
+            return ("The Slime King appeared!");
         } else {
-            Random random = new Random();
-            int enemy = 0;
-            enemy = random.nextInt(3) + 1;
-
             switch(enemy) {
+            case 0:
+                return ("A slime blob appeared!");
             case 1:
-                System.out.println("A slime blob appeared!");
-                break;
+                return ("A slime lizard appeared!");
             case 2:
-                System.out.println("A slime lizard appeared!");
-                break;
-            case 3:
-                System.out.println("A slime rat appeared!");
-                break;
+                return ("A slime rat appeared!");
             default:
-                break;
+                return "";
             }
         }
     }

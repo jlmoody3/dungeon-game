@@ -25,28 +25,25 @@ public class TemporaryItem extends Item {
     }
 
     @Override
-    public void getItem(ConcreteCharacter character, Item item) {
-        Random random = new Random();
-        int chance = random.nextInt(NUM_ITEMS) + 1;
-
+    public void getItem(int chance, ConcreteCharacter character, Item item) {
         switch(chance) {
-        case 1:
+        case 0:
             item = new HealingPotion(character);
             System.out.println("You found Healing Potion!");
             break;
-        case 2:
+        case 1:
             item = new SleepingPotion(character);
             System.out.println("You found Sleeping Potion!");
             break;
-        case 3:
+        case 2:
             item = new ObscuringPotion(character);
             System.out.println("You found Obscuring Potion!");
             break;
-        case 4:
+        case 3:
             item = new ParalyzingPotion(character);
             System.out.println("You found Paralyzing Potion!");
             break;
-        case 5:
+        case 4:
             item = new WeakeningPotion(character);
             System.out.println("You found Weakening Potion!");
             break;
@@ -63,6 +60,10 @@ public class TemporaryItem extends Item {
 
     public Character getCharacter() {
         return character;
+    }
+
+    public int getNumItems() {
+        return NUM_ITEMS;
     }
 
 }

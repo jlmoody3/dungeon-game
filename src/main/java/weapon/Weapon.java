@@ -23,29 +23,27 @@ public abstract class Weapon implements Character {
 
     public abstract int strike(ConcreteCharacter character);
 
-    public void getWeapon(ConcreteCharacter c) {
-        Random random = new Random();
-        int chance = random.nextInt(NUM_WEAPONS) + 1;
+    public void getWeapon(int chance, ConcreteCharacter c) {
         Weapon newWeapon = null;
 
         switch(chance) {
-        case 1:
+        case 0:
             newWeapon = new Sword(this);
             System.out.println("You found a Sword!");
             break;
-        case 2:
+        case 1:
             newWeapon = new Bow(this);
             System.out.println("You found a Bow!");
             break;
-        case 3:
+        case 2:
             newWeapon = new Club(this);
             System.out.println("You found a Club!");
             break;
-        case 4:
+        case 3:
             newWeapon = new Wand(this);
             System.out.println("You found a Wand!");
             break;
-        case 5:
+        case 4:
             newWeapon = new Sceptre(this);
             System.out.println("You found a Sceptre!");
             break;
@@ -151,5 +149,9 @@ public abstract class Weapon implements Character {
 
     public Character getCharacter() {
         return character;
+    }
+    
+    public int getNumWeapons() {
+        return NUM_WEAPONS;
     }
 }

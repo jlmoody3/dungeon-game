@@ -5,6 +5,6 @@ import main.java.character.ConcreteCharacter;
 
 public abstract class Item implements Character {
 
-    public abstract void getItem(ConcreteCharacter character, Item item);
+    public abstract void getItem(int chance, ConcreteCharacter character, Item item);
     public abstract int addEffects(Character character);
 }

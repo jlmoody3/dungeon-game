@@ -32,26 +32,19 @@ public class CandyRealm implements State {
     }
 
     @Override
-    public void chooseEnemy() {
+    public String chooseEnemy(int enemy) {
         if (dungeon.getFloor() % 5 == 0) {
-            System.out.println("The Psychic Gobstopper appeared!");
+            return ("The Psychic Gobstopper appeared!");
         } else {
-            Random random = new Random();
-            int enemy = 0;
-            enemy = random.nextInt(3) + 1;
-
             switch(enemy) {
+            case 0:
+                return ("A candy blob appeared!");
             case 1:
-                System.out.println("A candy blob appeared!");
-                break;
+                return ("A candy goblin appeared!");
             case 2:
-                System.out.println("A candy goblin appeared!");
-                break;
-            case 3:
-                System.out.println("A candy robot appeared!");
-                break;
+                return ("A candy robot appeared!");
             default:
-                break;
+                return "";
             }
         }
     }

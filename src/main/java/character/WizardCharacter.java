@@ -68,6 +68,7 @@ public class WizardCharacter extends ConcreteCharacter {
         Weapon weapon = getWeapons().get(0);
         PermanentItem item = new PermanentItem(this);
         TemporaryItem potion = new TemporaryItem(this);
-        getTreasure(weapon, item, potion);
+        int chance = findRandom(5);
+        getTreasure(chance,weapon, item, potion);
     }
 }

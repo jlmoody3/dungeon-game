@@ -82,9 +82,7 @@ public abstract class ConcreteCharacter implements Character {
      * Method that determines whether the character will strike first
      * @return true if the character strikes first
      */
-    public boolean strikeFirst() {
-        Random random = new Random();
-        int chance = random.nextInt(MAX_SPEED);
+    public boolean strikeFirst(int chance) {
         if (chance <= speed) {
             return true;
         }
@@ -95,9 +93,7 @@ public abstract class ConcreteCharacter implements Character {
      * Method that determines whether the character will miss
      * @return true if the character misses
      */
-    public boolean strikeFail() {
-        Random random = new Random();
-        int chance = random.nextInt(MAX_ACCURACY);
+    public boolean strikeFail(int chance) {
         if (chance <= accuracy) {
             return false;
         }
@@ -108,9 +104,7 @@ public abstract class ConcreteCharacter implements Character {
      * Method that determines if the character will find treasure.
      * @return true if the character finds treasure.
      */
-    public boolean findTreasure() {
-        Random random = new Random();
-        int chance = random.nextInt(MAX_LUCK);
+    public boolean findTreasure(int chance) {
         if (chance <= luck) {
             return true;
         }
@@ -121,24 +115,30 @@ public abstract class ConcreteCharacter implements Character {
      * Method that determines if the character will critically strike
      * @return true if the character will critically strike
      */
-    public boolean criticalStrike() {
-        Random random = new Random();
-        int chance = random.nextInt(MAX_CRITICAL_STRIKE);
+    public boolean criticalStrike(int chance) {
         if (chance <= criticalStrike) {
             return true;
         }
         return false;
     }
 
-    public void getTreasure(Weapon newWeapon, PermanentItem item, TemporaryItem potion) {
-        Random random = new Random();
-        int chance = random.nextInt(5);
+    /**
+     * Method that determines what type of treasure you will find.
+     * @param newWeapon
+     * @param item
+     * @param potion
+     */
+    public void getTreasure(int chance, Weapon newWeapon, PermanentItem item, TemporaryItem potion) {
+        int r;
         if (chance == 4) {
-            newWeapon.getWeapon(this);
+            r = findRandom(newWeapon.getNumWeapons());
+            newWeapon.getWeapon(r, this);
         } else if (chance == 3) {
-            item.getItem(this, item);
+            r = findRandom(item.getNumItems());
+            item.getItem(r, this, item);
         } else {
-            potion.getItem(this, potion);
+            r = findRandom(potion.getNumItems());
+            potion.getItem(r, this, potion);
         }
     }
 
@@ -157,6 +157,17 @@ public abstract class ConcreteCharacter implements Character {
             }
             System.out.println("You healed yourself! You now have " + getHealthPoints() + " HP!");
         }
+    }
+
+    /**
+     * Method that generates a random number between 0 and a max value.
+     * @param max
+     * @return random number
+     */
+    public int findRandom(int max) {
+        Random random = new Random();
+        int chance = random.nextInt(max);
+        return chance;
     }
 
     public int getStrength() {
@@ -205,17 +216,7 @@ public abstract class ConcreteCharacter implements Character {
 
     public void setLevel() {
         int exp = getExpPoints();
-        if (exp >= 9550) {
-            level = 20;
-        } else if (exp >= 8550) {
-            level = 19;
-        } else if (exp >= 7650) {
-            level = 18;
-        } else if (exp >= 6800) {
-            level = 17;
-        } else if (exp >= 6000) {
-            level = 16;
-        } else if (exp >= 5250) {
+        if (exp >= 5250) {
             level = 15;
         } else if (exp >= 4550) {
             level = 14;
@@ -311,6 +312,22 @@ public abstract class ConcreteCharacter implements Character {
 
     public CharacterType getCharacterType() {
         return character;
+    }
+
+    public int getMaxAccuracy() {
+        return MAX_ACCURACY;
+    }
+
+    public int getMaxSpeed() {
+        return MAX_SPEED;
+    }
+
+    public int getMaxLuck() {
+        return MAX_LUCK;
+    }
+
+    public int getMaxCriticalStrike() {
+        return MAX_CRITICAL_STRIKE;
     }
 
     /**

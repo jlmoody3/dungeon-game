@@ -34,26 +34,19 @@ public class FireRealm implements State {
     }
 
     @Override
-    public void chooseEnemy() {
+    public String chooseEnemy(int enemy) {
         if (dungeon.getFloor() % 5 == 0) {
-            System.out.println("The Hellhound appeared!");
+            return ("The Hellhound appeared!");
         } else {
-            Random random = new Random();
-            int enemy = 0;
-            enemy = random.nextInt(3) + 1;
-
             switch(enemy) {
+            case 0:
+                return ("A fire blob appeared!");
             case 1:
-                System.out.println("A fire blob appeared!");
-                break;
+                return ("A lava monster appeared!");
             case 2:
-                System.out.println("A lava monster appeared!");
-                break;
-            case 3:
-                System.out.println("A flaming skull appeared!");
-                break;
+                return ("A flaming skull appeared!");
             default:
-                break;
+                return "";
             }
         }
     }

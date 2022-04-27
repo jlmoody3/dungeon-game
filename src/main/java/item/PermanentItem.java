@@ -20,10 +20,8 @@ public class PermanentItem extends Item {
         this.character = character;
     }
 
-    public void getItem(ConcreteCharacter character, Item item) {
-        Random random = new Random();
-        int choice = random.nextInt(NUM_ITEMS);
-        switch (choice) {
+    public void getItem(int chance, ConcreteCharacter character, Item item) {
+        switch (chance) {
         case 0:
             item = new Helmet(character);
             System.out.println("You found a helmet!");
@@ -85,6 +83,10 @@ public class PermanentItem extends Item {
 
     public Character getCharacter() {
         return character;
+    }
+
+    public int getNumItems() {
+        return NUM_ITEMS;
     }
 
 }

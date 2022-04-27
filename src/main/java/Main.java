@@ -85,13 +85,14 @@ public class Main {
         char1.setWeapons(newWeapon);
 
         char1.printStats();
-
+        // Enter the dungeon
         Dungeon dungeon = new Dungeon();
         System.out.println("You have entered the dungeon.");
         int floor = 0;
 
         while (floor <= dungeon.getNumFloors()) {
             floor = dungeon.getFloor();
+            // Enter the realm
             System.out.println("You have entered the " + dungeon.getRealm().toString() + ".");
 
             for (int i = 0; i < dungeon.getNumFloors() / dungeon.getNumRealms()
@@ -101,7 +102,9 @@ public class Main {
                 System.out.println("You have " + char1.getExpPoints() + " XP.");
                 // set enemy health points
                 int totalEnemyHP = dungeon.getRealm().calculateTotalHP(floor);
-                dungeon.getRealm().chooseEnemy();
+                int enemy = char1.findRandom(3);
+                String enemyAppears = dungeon.getRealm().chooseEnemy(enemy);
+                System.out.println(enemyAppears);
                 dungeon.getRealm().setEnemyHP(totalEnemyHP);
                 System.out.println("It has " + totalEnemyHP + " HP.");
 
@@ -113,10 +116,12 @@ public class Main {
                 ArrayList<TemporaryItem> tempItems;
                 int potionChoice = 0;
                 // choose who strikes first
-                boolean first = char1.strikeFirst();
+                int chance1 = char1.findRandom(char1.getMaxSpeed());
+                boolean first = char1.strikeFirst(chance1);
                 while (dungeon.getRealm().getEnemyHP() > 0 && char1.getHealthPoints() > 0) {
                     // check to see if you will miss
-                    boolean fail = char1.strikeFail();
+                    int chance2 = char1.findRandom(char1.getMaxAccuracy());
+                    boolean fail = char1.strikeFail(chance2);
                     if (first) {
                         if (char1.getHealthPoints() > 0) {
                             if (char1.getTemporaryItems().size() == 0) {
@@ -168,7 +173,8 @@ public class Main {
                                 }
                                 damageToEnemy = newWeapon.strike(char1);
                                 if (!fail) {
-                                    if (char1.criticalStrike()) {
+                                    int chance3 = char1.findRandom(char1.getMaxCriticalStrike());
+                                    if (char1.criticalStrike(chance3)) {
                                         damageToEnemy = damageToEnemy + newWeapon.strike(char1);
                                         System.out.println("Critical strike!");
                                     }
@@ -269,11 +275,13 @@ public class Main {
                 }
 
                 if (char1.getHealthPoints() > 15) {
-                    if (char1.findTreasure() && floor != dungeon.getNumFloors()) {
+                    int chance4 = char1.findRandom(char1.getMaxLuck());
+                    if (char1.findTreasure(chance4) && floor != dungeon.getNumFloors()) {
                         System.out.println("You found a treasure chest!");
                         PermanentItem item = new PermanentItem(char1);
                         TemporaryItem potion = new TemporaryItem(char1);
-                        char1.getTreasure(newWeapon, item, potion);
+                        int chance5 = char1.findRandom(5);
+                        char1.getTreasure(chance5, newWeapon, item, potion);
                     }
                     floor++;
                     dungeon.setFloor(floor);

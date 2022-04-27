@@ -34,26 +34,19 @@ public class GoldRealm implements State {
     }
 
     @Override
-    public void chooseEnemy() {
+    public String chooseEnemy(int enemy) {
         if (dungeon.getFloor() % 5 == 0) {
-            System.out.println("The Golden Gorgon appeared!");
+            return ("The Golden Gorgon appeared!");
         } else {
-            Random random = new Random();
-            int enemy = 0;
-            enemy = random.nextInt(3) + 1;
-
             switch(enemy) {
+            case 0:
+                return ("A gold blob appeared!");
             case 1:
-                System.out.println("A gold blob appeared!");
-                break;
+                return ("A gold serpent appeared!");
             case 2:
-                System.out.println("A gold serpent appeared!");
-                break;
-            case 3:
-                System.out.println("A gold dragon appeared!");
-                break;
+                return ("A gold dragon appeared!");
             default:
-                break;
+                return "";
             }
         }
     }
